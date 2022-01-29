@@ -40,7 +40,7 @@ export default {
   name: "NavBar",
   data() {
     return {
-      appName: "Yuis-app555"
+      appName: ".:.:."
     }
   }
 }

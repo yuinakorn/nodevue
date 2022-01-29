@@ -5,6 +5,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 
 /* eslint-disable */
-const axios = require('axios');
+// const axios = require('axios');
 
 createApp(App).use(router).mount('#app')

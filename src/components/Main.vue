@@ -153,7 +153,7 @@ export default {
       }
     },
     diagClass(result) {
-      console.log(result);
+      // console.log(result);
       if (result != 0) {
         return 'my-3 p-3 bg-body rounded shadow-sm';
       } else {
@@ -161,7 +161,7 @@ export default {
       }
     },
     drugClass(result) {
-      console.log(result);
+      // console.log(result);
       if (result != 0) {
         return 'my-3 p-3 bg-body rounded shadow-sm';
       } else {
@@ -169,7 +169,7 @@ export default {
       }
     },
     labClass(result) {
-      console.log(result);
+      // console.log(result);
       if (result != 0) {
         return 'my-3 p-3 bg-body rounded shadow-sm';
       } else {
@@ -177,7 +177,7 @@ export default {
       }
     },
     procClass(result) {
-      console.log(result);
+      // console.log(result);
       if (result != 0) {
         return 'my-3 p-3 bg-body rounded shadow-sm';
       } else {
@@ -185,14 +185,14 @@ export default {
       }
     },
     getThaiDate(thd) {
-      console.log(thd);
+      // console.log(thd);
       const y = new Date(thd);
       let year = y.getFullYear();
       const m = new Date(thd);
       let month = m.getMonth();
       const d = new Date(thd);
       let day = d.getDay();
-      console.log(year);
+      // console.log(year);
       const date = new Date(year, month, day)
       const resultd = date.toLocaleDateString('th-TH', {
         year: 'numeric',

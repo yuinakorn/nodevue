@@ -35,14 +35,14 @@ export default {
       }
     },
     getThaiDate(thd) {
-      console.log(thd);
+      // console.log(thd);
       const y = new Date(thd);
       let year = y.getFullYear();
       const m = new Date(thd);
       let month = m.getMonth();
       const d = new Date(thd);
       let day = d.getDay();
-      console.log(year);
+      // console.log(year);
       const date = new Date(year, month, day)
       const resultd = date.toLocaleDateString('th-TH', {
         year: 'numeric',
