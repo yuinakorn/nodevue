@@ -1,26 +1,76 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <NavBar />
+  <router-view/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// @ is an alias to /src
+import NavBar from '@/components/NavBar'
 
 export default {
-  name: 'App',
+  name: 'Home',
   components: {
-    HelloWorld
-  }
+    NavBar
+  },
 }
 </script>
 
 <style>
+:root {
+  /*--main-color: #007672;*/
+  --main-color: #20afaa;
+  /*--border-color: #016460;*/
+  --border-color: #20afaa;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
+  font-family: 'Kanit', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /*text-align: center;*/
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+* {
+  font-family: 'Kanit', sans-serif !important;
+
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+.list-group-item.active {
+  background-color: var(--main-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+.btn-outline-primary {
+  color: var(--main-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+.btn-outline-primary:hover {
+  color: white !important;
+  background-color: var(--main-color) !important;
+  border-color: var(--border-color) !important;
+}
+
+.bg-primary-my {
+  background-color: #6bd2ff !important;
+}
+
+.bg-danger-my {
+  background-color: #DD4FB1 !important;
+}
+
 </style>
