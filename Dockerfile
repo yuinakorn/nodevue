@@ -16,7 +16,6 @@
 FROM node:16.13.2-bullseye-slim@sha256:0f35ef0fa878eb2684aedaa779cbfb73f1db7bcf75b76508782ba48a9e4050d7  as build-stage
 WORKDIR /app
 COPY package*.json ./
-#RUN npm install @vue/cli -g
 RUN npm install
 COPY . .
 RUN npm run build
