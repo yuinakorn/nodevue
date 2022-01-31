@@ -40,7 +40,7 @@
 
 <script>
 
-import axios from "axios";
+// import axios from "axios";
 
 export default {
   name: "NavBar",
@@ -54,29 +54,29 @@ export default {
   props: {
     visits: Array
   },
-  mounted() {
-    let cids = this.$route.params.cid;
-    // console.log(cids);
-    let url = "https://cvp1.moph.go.th/api/ImmunizationTarget?hospital_code=00037&cid=" + cids;
-    const token = '';
-    const header = {
-      headers: { Authorization: `Bearer ${token}` }
-    };
-    axios.get(url,header)
-        .then(response => {
-          // handle success
-          console.log(response);
-          this.imms = response.data;
-          // console.log(this.visits);
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        })
-        .then(function () {
-          // always executed
-        });
-  }
+  // mounted() {
+  //   let cids = this.$route.params.cid;
+  //   // console.log(cids);
+  //   let url = "https://cvp1.moph.go.th/api/ImmunizationTarget?hospital_code=00037&cid=" + cids;
+  //   const token = '';
+  //   const header = {
+  //     headers: { Authorization: `Bearer ${token}` }
+  //   };
+  //   axios.get(url,header)
+  //       .then(response => {
+  //         // handle success
+  //         console.log(response);
+  //         this.imms = response.data;
+  //         // console.log(this.visits);
+  //       })
+  //       .catch(function (error) {
+  //         // handle error
+  //         console.log(error);
+  //       })
+  //       .then(function () {
+  //         // always executed
+  //       });
+  // }
   // methods: {
   //   getName () {
   //     this.getVisits = this.visits;
