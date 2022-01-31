@@ -1,5 +1,6 @@
 <template>
   <body>
+  <NavBar :visits="visits"/>
   <div class="container-fluid pt-3">
     <div class="row">
       <SideBar :visits="visits"/>
@@ -13,6 +14,7 @@
 // @ is an alias to /src
 import Main from '@/components/Main.vue';
 import SideBar from "@/components/SideBar";
+import NavBar from "@/components/NavBar";
 import axios from "axios";
 // import https from "https";
 
@@ -20,7 +22,8 @@ export default {
   name: 'Home',
   components: {
     Main,
-    SideBar
+    SideBar,
+    NavBar
   },
   data() {
     return {
