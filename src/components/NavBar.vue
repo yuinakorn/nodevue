@@ -16,14 +16,16 @@
 
         <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-3 mb-md-0 d-block justify-content-start">
           <div class="d-block"><span class="fw-bold">ชื่อ-สกุล:</span> นายสมชาย ใจสะอาด</div>
-          <div class="d-block"><span class="fw-bold">เพศ:</span> </div>
-          <div class="d-block"><span class="fw-bold">อายุ:</span> </div>
-          <div class="d-block"><span class="fw-bold">วันเกิด:</span> </div>
+          <div class="d-block"><span class="fw-bold">เพศ:</span></div>
+          <div class="d-block"><span class="fw-bold">อายุ:</span></div>
+          <div class="d-block"><span class="fw-bold">วันเกิด:</span></div>
         </div>
 
         <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-5 mb-md-0 d-block justify-content-start">
           <div class="d-block fw-bold">เลขบัตรประชาชน: </div>
-          <div class="d-block fw-bold">วัคซีนโควิด: </div>
+          <div class="d-block"><span class="fw-bold">วัคซีนโควิด:</span>
+            <span class="ms-1 badge bg-soft1 text-dark rounded-pill" v-for="imm in imms" :key="imm.id">{{ imm.vaccine_dose_no }}. {{ imm.vaccine_manufacturer_name }}</span>
+          </div>
           <div class="d-block fw-bold">ประวัติติดเชื่อโควิด: </div>
         </div>
       </div>
@@ -57,16 +59,12 @@ export default {
   mounted() {
     let cids = this.$route.params.cid;
     // console.log(cids);
-    let url = "https://cvp1.moph.go.th/api/ImmunizationTarget?hospital_code=00037&cid=" + cids;
-    const token = '';
-    const header = {
-      headers: { Authorization: `Bearer ${token}` }
-    };
-    axios.get(url,header)
+    let url = "http://122.155.219.133:8081/?c=" + cids;
+    axios.get(url)
         .then(response => {
           // handle success
-          console.log(response);
-          this.imms = response.data;
+          console.log(response.data.result.vaccine_certificate[0].vaccination_list);
+          this.imms = response.data.result.vaccine_certificate[0].vaccination_list;
           // console.log(this.visits);
         })
         .catch(function (error) {

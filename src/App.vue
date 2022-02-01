@@ -21,6 +21,8 @@ export default {
   --main-color: #20afaa;
   /*--border-color: #016460;*/
   --border-color: #20afaa;
+
+  --color-1: #83dad7;
 }
 #app {
   /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
@@ -71,6 +73,10 @@ export default {
 
 .bg-danger-my {
   background-color: #DD4FB1 !important;
+}
+
+.bg-soft1 {
+  background-color: var(--color-1) !important;
 }
 
 </style>

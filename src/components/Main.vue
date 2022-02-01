@@ -1,6 +1,6 @@
 <template>
 
-  <div class="col-md-9 my-scroll-box" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="40" tabindex="0">
+  <div class="col-md-9 my-scroll-box" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="148" tabindex="0">
     <div :id="`vn${visit0.vn}`" v-for="visit0 in visits" :key="visit0.id">
       <!--        <h4 id="intro">Introduction to Bootstrap</h4>-->
 <!--      <h4>{{ visit0.dateserv }}</h4>-->
@@ -15,11 +15,11 @@
       <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h6 class="border-bottom pb-2 mb-0"><strong>Screening</strong></h6>
         <div class="d-flex pt-3 justify-content-between px-3">
-          <div><span class="fw-bold">SBP/DBP</span> {{ visit0.bps }}/{{ visit0.bpd }}</div>
-          <div><span class="fw-bold">Pulse:</span> {{ visit0.pulse }}</div>
-          <div><span class="fw-bold">Temp:</span> {{ visit0.temperature }} °C</div>
-          <div><span class="fw-bold">น้ำหนัก:</span> {{ visit0.weight }} กก.</div>
-          <div><span class="fw-bold">ส่วนสูง:</span> {{ visit0.height }} ซม.</div>
+          <div><span class="fw-bold">SBP/DBP</span> {{ formatNum0(visit0.bps) }}/{{ formatNum0(visit0.bpd) }}</div>
+          <div><span class="fw-bold">Pulse:</span> {{ formatNum1(visit0.pulse) }}</div>
+          <div><span class="fw-bold">Temp:</span> {{ formatNum1(visit0.temperature) }} °C</div>
+          <div><span class="fw-bold">น้ำหนัก:</span> {{ formatNum0(visit0.weight) }} กก.</div>
+          <div><span class="fw-bold">ส่วนสูง:</span> {{ formatNum0(visit0.height) }} ซม.</div>
         </div>
       </div>
       <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -141,6 +141,12 @@
 
 export default {
   name: 'HomePage',
+  data () {
+    return {
+      formatNum: '',
+      number: '',
+    }
+  },
   props: {
     visits: Array
   },
@@ -201,6 +207,26 @@ export default {
         day: '2-digit',
       });
       return resultd;
+    },
+    formatNum0 (n) {
+      let num0 = parseFloat(n).toFixed(0);
+      let fnum = '';
+      if (num0 === 'NaN') {
+          fnum = '-';
+      } else {
+          fnum = num0;
+      }
+      return fnum;
+    },
+    formatNum1 (n) {
+      let num1 = parseFloat(n).toFixed(1);
+      let fnum = '';
+      if (num1 === 'NaN') {
+        fnum = '-';
+      } else {
+        fnum = num1;
+      }
+      return fnum;
     }
   }
 }
