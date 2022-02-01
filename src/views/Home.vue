@@ -36,30 +36,16 @@ export default {
     let cids = this.$route.params.cid;
     console.log(cids);
 
-    let apiUrl = process.env.apiUrl + '/api/sv/service/' + cids;
+    let apiUrl = process.env.VUE_APP_APIURL + '/api/sv/service/' + cids;
+    console.log(apiUrl);
 
-// // At instance level
-//     const instance = axios.create({
-//       httpsAgent: new https.Agent({
-//         rejectUnauthorized: false
-//       })
-//     });
-//     instance.get("http://122.155.219.133:5002/api/sv/service/*");
-//
-// // At request level
-//     const agent = new https.Agent({
-//       rejectUnauthorized: false
-//     });
-//     axios.get(apiUrl, { httpsAgent: agent })
     axios.get(apiUrl)
         .then(response => {
-          // handle success
           // console.log(response.data);
           this.visits = response.data;
           // console.log(this.visits);
         })
         .catch(function (error) {
-          // handle error
           console.log(error);
         })
         .then(function () {

@@ -11,22 +11,23 @@
       <!--      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">-->
       <div class="d-flex">
         <a href="/" class="align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          <img src="../assets/person_avatar.jpg" width="79">
+<!--          <img src="../assets/person_avatar.jpg" width="79">-->
+          <img :src="'data:image/png;base64,'+patient_img" width="79">
         </a>
 
         <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-3 mb-md-0 d-block justify-content-start">
-          <div class="d-block"><span class="fw-bold">ชื่อ-สกุล:</span> นายสมชาย ใจสะอาด</div>
-          <div class="d-block"><span class="fw-bold">เพศ:</span></div>
-          <div class="d-block"><span class="fw-bold">อายุ:</span></div>
-          <div class="d-block"><span class="fw-bold">วันเกิด:</span></div>
+          <div class="d-block"><span class="fw-bold">ชื่อ-สกุล:</span> {{ patient.pname }}{{ patient.fname }} {{ patient.lname }}</div>
+          <div class="d-block"><span class="fw-bold">เพศ:</span> {{ patient.sex }}</div>
+          <div class="d-block"><span class="fw-bold">อายุ:</span> {{ patient.age }}</div>
+          <div class="d-block"><span class="fw-bold">วันเกิด:</span> {{ patient.birthday }}</div>
         </div>
 
         <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-5 mb-md-0 d-block justify-content-start">
-          <div class="d-block fw-bold">เลขบัตรประชาชน: </div>
+          <div class="d-block"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}</div>
           <div class="d-block"><span class="fw-bold">วัคซีนโควิด:</span>
             <span class="ms-1 badge bg-soft1 text-dark rounded-pill" v-for="imm in imms" :key="imm.id">{{ imm.vaccine_dose_no }}. {{ imm.vaccine_manufacturer_name }}</span>
           </div>
-          <div class="d-block fw-bold">ประวัติติดเชื่อโควิด: </div>
+<!--          <div class="d-block fw-bold">ประวัติติดเชื่อโควิด: </div>-->
         </div>
       </div>
       <div class="d-flex">
@@ -49,9 +50,10 @@ export default {
   name: "NavBar",
   data() {
     return {
-      appName: ".:.:.",
       getVisits: null,
-      imms: null
+      imms: null,
+      patient: [],
+      patient_img: ''
     }
   },
   props: {
@@ -59,8 +61,9 @@ export default {
   },
   mounted() {
     let cids = this.$route.params.cid;
+    let hcods = this.$route.params.hcode;
     // console.log(cids);
-    let url = process.env.vaccineUrl + "/?c=" + cids;
+    let url = process.env.VUE_APP_VACCINEURL + "/?c=" + cids;
     axios.get(url)
         .then(response => {
           // handle success
@@ -75,16 +78,26 @@ export default {
         .then(function () {
           // always executed
         });
+
+    let patientUlr = process.env.VUE_APP_APIURL + "/api/data/patient/" + cids + "/" + hcods;
+    console.log(patientUlr);
+    axios.get(patientUlr)
+        .then(response => {
+          // handle success
+          console.log(response.data[0]);
+          this.patient = response.data[0];
+          this.patient_img = response.data[0].image;
+          // console.log(this.visits);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function () {
+          // always executed
+        });
+
   }
-  // methods: {
-  //   getName () {
-  //     this.getVisits = this.visits;
-  //     console.log(this.getVisits);
-  //   }
-  // },
-  // beforeMount(){
-  //   this.getName()
-  // },
 }
 </script>
 
