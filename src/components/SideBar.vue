@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3">
+  <div class="col-md-3 my-scroll-side">
     <ul class="list-group bg-body rounded shadow-sm" id="scrollspy-list">
       <a :href="`#vn${ visit.vn }`"
          class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
@@ -78,6 +78,13 @@ export default {
 .line-height07 {
   line-height: 0.7rem;
 }
-
-
+.my-scroll-side {
+  height: 82vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  /*scrollbar-width: none; !* for Firefox *!*/
+}
+.my-scroll-side::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
 </style>

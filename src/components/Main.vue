@@ -254,7 +254,7 @@ a {
 }
 
 .my-scroll-box {
-  height: 90vh;
+  height: 83vh;
   overflow-y: scroll;
 }
 
