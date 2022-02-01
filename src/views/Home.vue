@@ -16,6 +16,8 @@ import Main from '@/components/Main.vue';
 import SideBar from "@/components/SideBar";
 import NavBar from "@/components/NavBar";
 import axios from "axios";
+require('dotenv').config();
+
 // import https from "https";
 
 export default {
@@ -33,10 +35,8 @@ export default {
   mounted() {
     let cids = this.$route.params.cid;
     console.log(cids);
-    // let apiUrl = 'http://localhost/php-api-client/json2.php';
-    // let apiUrl = 'http://122.155.219.133:5002/api/sv/service/3500500413762';
-    // let apiUrl = 'http://122.155.219.133:5002/api/sv/service/3510500001251';
-    let apiUrl = 'http://122.155.219.133:5002/api/sv/service/' + cids;
+
+    let apiUrl = process.env.apiUrl + '/api/sv/service/' + cids;
 
 // // At instance level
 //     const instance = axios.create({
