@@ -4,10 +4,13 @@
       <a :href="`#vn${ visit.vn }`"
          class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
          v-for="visit in visits" :key="visit.id">
-        <div class="me-auto">
-<!--          <div class="fw-bold line-height07">{{ visit.dateserv }}</div>-->
+        <div class="col-4">
+          <!--          <div class="fw-bold line-height07">{{ visit.dateserv }}</div>-->
           <div class="fw-bold line-height07">{{ getThaiDate(visit.dateserv) }}</div>
           <span class="text-sub-title line-height07">{{ visit.hname }}</span>
+        </div>
+        <div class="text-truncate">
+          <span class="text-muted small">{{ visit.symptom }}</span>
         </div>
         <span :class="getClass(visit.depart)">{{ visit.depart }}</span>
       </a>

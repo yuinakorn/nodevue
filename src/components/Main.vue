@@ -1,6 +1,6 @@
 <template>
 
-  <div class="col-md-9 my-scroll-box" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="148" tabindex="0">
+  <div class="col-md-9 my-scroll-box" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="180" tabindex="0">
     <div :id="`vn${visit0.vn}`" v-for="visit0 in visits" :key="visit0.id">
       <!--        <h4 id="intro">Introduction to Bootstrap</h4>-->
 <!--      <h4>{{ visit0.dateserv }}</h4>-->
@@ -23,13 +23,13 @@
         </div>
       </div>
       <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h6 class="border-bottom pb-2 mb-0"><strong>CC/PI</strong></h6>
+        <h6 class="border-bottom pb-2 mb-0"><strong>Symptom</strong></h6>
         <div class="d-flex pt-3">
           <span>{{ visit0.symptom }}</span>
         </div>
       </div>
       <div :class="diagClass(visit0.data.drug.length)">
-        <h6 class="border-bottom pb-2 mb-0"><strong>รหัสวินิจฉัย</strong></h6>
+        <h6 class="border-bottom pb-2 mb-0"><strong>Diagnosis</strong></h6>
         <div class="d-flex text-muted pt-3">
           <table class="table">
               <thead>
@@ -54,7 +54,7 @@
       </div>
 
       <div :class="drugClass(visit0.data.drug.length)">
-        <h6 class="border-bottom pb-2 mb-0"><strong>ยา</strong></h6>
+        <h6 class="border-bottom pb-2 mb-0"><strong>Drug</strong></h6>
         <div class="d-flex text-muted pt-3">
           <table class="table">
               <thead>
