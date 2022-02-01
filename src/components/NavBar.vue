@@ -43,6 +43,7 @@
 <script>
 
 import axios from "axios";
+require('dotenv').config();
 
 export default {
   name: "NavBar",
@@ -59,7 +60,7 @@ export default {
   mounted() {
     let cids = this.$route.params.cid;
     // console.log(cids);
-    let url = "http://122.155.219.133:8081/?c=" + cids;
+    let url = process.env.vaccineUrl + "/?c=" + cids;
     axios.get(url)
         .then(response => {
           // handle success
