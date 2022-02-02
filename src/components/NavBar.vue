@@ -5,7 +5,8 @@
       <div class="d-flex">
         <a href="/" class="align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
           <!--          <img src="../assets/person_avatar.jpg" width="79">-->
-          <img :src="'data:image/png;base64,'+patient_img" height="95">
+          <img :src="'data:image/png;base64,'+patient_img" height="95" v-if="patient_img != null && patient_img != ''">
+          <img src="../assets/person_avatar.jpg" height="95" v-else>
         </a>
 
         <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-3 mb-md-0 d-block justify-content-start">
@@ -84,7 +85,7 @@ export default {
           console.log(response.data[0]);
           this.patient = response.data[0];
           this.patient_img = response.data[0].image;
-          // console.log(this.visits);
+          // console.log(this.patient_img);
         })
         .catch(function (error) {
           // handle error
