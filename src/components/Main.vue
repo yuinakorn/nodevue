@@ -154,8 +154,15 @@ export default {
     getClass(result){
       if (result === 'OPD') {
         return 'badge bg-primary-my rounded-pill';
-      } else {
+      }
+      else if (result === 'IPD') {
+
         return 'badge bg-danger-my rounded-pill';
+      }
+      else if (result === 'ER') {
+        return 'badge bg-warning-my rounded-pill';
+      } else  {
+        return 'badge bg-light text-dark rounded-pill';
       }
     },
     diagClass(result) {
