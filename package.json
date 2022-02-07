@@ -16,9 +16,12 @@
     "https": "^1.0.0",
     "socket.io": "^4.4.1",
     "socket.io-client": "^4.4.1",
+    "tar": "^6.1.11",
     "vue": "^3.0.0",
+    "vue-content-loader": "^2.0.1",
     "vue-router": "^4.0.0-0",
-    "vue-socket.io": "^3.0.10"
+    "vue-socket.io": "^3.0.10",
+    "vue-spinkit": "^2.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

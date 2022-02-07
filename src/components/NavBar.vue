@@ -62,7 +62,7 @@ export default {
   mounted() {
     let cids = this.$route.params.cid;
     let url = process.env.VUE_APP_VACCINEURL + "/?c=" + cids;
-    console.log('vaccineUrl = ' + url);
+    // console.log('vaccineUrl = ' + url);
     axios.get(url)
         .then(response => {
           // handle success
@@ -78,15 +78,18 @@ export default {
           // always executed
         });
 
-    const socket = io(process.env.VUE_APP_APIURL);
-    socket.on("connect", () => {
+    const sockets = io(process.env.VUE_APP_APIURL);
+    // const sockets = io('http://122.155.219.133:5001');
+    console.log(process.env.VUE_APP_APIURL);
+    sockets.on("connect", () => {
       let hcode = this.$route.params.hcode;
       // event get patient
       let message = '{"datatype": "patient","cid":"' + cids + '","hcode":"' + hcode + '"}';
-      socket.emit('patient', message);
-      socket.on('patient', (message) => {
+      sockets.emit('patient', message);
+      sockets.on('patient', (message) => {
         try {
           let resObj = JSON.parse(message);
+          console.log(resObj);
           this.patient = resObj[0];
           this.patient_img = resObj[0].image;
           console.log(this.patient);

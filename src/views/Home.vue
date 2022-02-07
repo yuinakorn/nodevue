@@ -3,6 +3,7 @@
   <NavBar :visits="visits"/>
   <div class="container-fluid pt-3">
     <div class="row">
+      <IsLoading v-if="loading"/>
       <SideBar :visits="visits"/>
       <Main :visits="visits"/>
     </div>
@@ -15,6 +16,8 @@
 import Main from '@/components/Main.vue';
 import SideBar from "@/components/SideBar";
 import NavBar from "@/components/NavBar";
+import IsLoading from "@/components/Loading";
+
 // import axios from "axios";
 import io from 'socket.io-client';
 
@@ -27,59 +30,62 @@ export default {
   components: {
     Main,
     SideBar,
-    NavBar
+    NavBar,
+    IsLoading
   },
   data() {
     return {
-      visits: null
+      visits: null,
+      loading: false,
+      overlay: false
     }
   },
-  methods: {
+  // methods: {
+  //   let cids = this.$route.params.cid;
+  //   console.log(cids);
+  //
+  //   let apiUrl = process.env.VUE_APP_APIURL + '/api/sv/service/' + cids;
+  //   console.log(apiUrl);
+  //
+  //   // const config = {
+  //   //   responseType: 'stream'
+  //   // };
+  //
+  //   axios.get(apiUrl)
+  //       .then(response => {
+  //         // console.log(response.data);
+  //         this.visits = response.data;
+  //         // console.log(this.visits);
+  //       })
+  //       .catch(function (error) {
+  //         console.log(error);
+  //       })
+  //       .then(function () {
+  //         // always executed
+  //       });
+  // },
+  async mounted() {
+    this.loading = true;
+    const socket = io(process.env.VUE_APP_APIURL);
+    await socket.on("connect", () => {
+      let cids = this.$route.params.cid;
 
-
-      //   let cids = this.$route.params.cid;
-      //   console.log(cids);
-      //
-      //   let apiUrl = process.env.VUE_APP_APIURL + '/api/sv/service/' + cids;
-      //   console.log(apiUrl);
-      //
-      //   // const config = {
-      //   //   responseType: 'stream'
-      //   // };
-      //
-      //   axios.get(apiUrl)
-      //       .then(response => {
-      //         // console.log(response.data);
-      //         this.visits = response.data;
-      //         // console.log(this.visits);
-      //       })
-      //       .catch(function (error) {
-      //         console.log(error);
-      //       })
-      //       .then(function () {
-      //         // always executed
-      //       });
-    },
-    mounted() {
-      const socket = io(process.env.VUE_APP_APIURL);
-      socket.on("connect", () => {
-        let cids = this.$route.params.cid;
-
-        // event get service
-        let messages = '{"datatype": "service","data": {"CID":"' + cids + '","viewer_id": "' + socket.id + '","client_id":"","his_data":""}}';
-        socket.emit('viewer', messages);
-        socket.on('viewer', (message) => {
-          try {
-            this.visits = JSON.parse(message);
-            console.log(this.visits);
-          } catch (error) {
-            console.log(error);
-          }
-        });
-
+      // event get service
+      let messages = '{"datatype": "service","data": {"CID":"' + cids + '","viewer_id": "' + socket.id + '","client_id":"","his_data":""}}';
+      socket.emit('viewer', messages);
+      socket.on('viewer', (message) => {
+        try {
+          this.visits = JSON.parse(message);
+          console.log(this.visits);
+          this.loading = false
+        } catch (error) {
+          console.log(error);
+        }
       });
-    }
+
+    });
   }
+}
 </script>
 
 <style scoped>
