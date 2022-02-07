@@ -41,6 +41,8 @@
 <script>
 
 import axios from "axios";
+import io from 'socket.io-client';
+// import * as socket from "socket.io-client/build/esm-debug/on";
 
 require('dotenv').config();
 
@@ -59,9 +61,8 @@ export default {
   },
   mounted() {
     let cids = this.$route.params.cid;
-    let hcods = this.$route.params.hcode;
-    // console.log(cids);
     let url = process.env.VUE_APP_VACCINEURL + "/?c=" + cids;
+    console.log('vaccineUrl = ' + url);
     axios.get(url)
         .then(response => {
           // handle success
@@ -77,23 +78,40 @@ export default {
           // always executed
         });
 
-    let patientUlr = process.env.VUE_APP_APIURL + "/api/data/patient/" + cids + "/" + hcods;
-    console.log(patientUlr);
-    axios.get(patientUlr)
-        .then(response => {
-          // handle success
-          console.log(response.data[0]);
-          this.patient = response.data[0];
-          this.patient_img = response.data[0].image;
-          // console.log(this.patient_img);
-        })
-        .catch(function (error) {
-          // handle error
+    const socket = io(process.env.VUE_APP_APIURL);
+    socket.on("connect", () => {
+      let hcode = this.$route.params.hcode;
+      // event get patient
+      let message = '{"datatype": "patient","cid":"' + cids + '","hcode":"' + hcode + '"}';
+      socket.emit('patient', message);
+      socket.on('patient', (message) => {
+        try {
+          let resObj = JSON.parse(message);
+          this.patient = resObj[0];
+          this.patient_img = resObj[0].image;
+          console.log(this.patient);
+        } catch (error) {
           console.log(error);
-        })
-        .then(function () {
-          // always executed
-        });
+        }
+      });
+    });
+
+    // let patientUlr = process.env.VUE_APP_APIURL + "/api/data/patient/" + cids + "/" + hcods;
+    // console.log(patientUlr);
+    // axios.get(patientUlr)
+    //     .then(response => {
+    //       // handle success
+    //       console.log(response.data[0]);
+    //       this.patient = response.data[0];
+    //       this.patient_img = response.data[0].image;
+    //     })
+    //     .catch(function (error) {
+    //       // handle error
+    //       console.log(error);
+    //     })
+    //     .then(function () {
+    //       // always executed
+    //     });
   },
   methods: {
     getThaiDate(thd) {
