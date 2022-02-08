@@ -30,12 +30,12 @@
         </div>
       </div>
       <div class="d-flex justify-content-end">
-        <div class="my-box col-lg-7 col-md-7 overflow-auto pt-1 px-2 pb-1">
-          <div class="drug_arg fa-3x">
-            <i class="fa-solid fa-skull-crossbones fa-fade"></i>แพ้ยา
-            <span style="font-size: 1rem!important;">(หากมีหลายรายการ โปรดเลื่อนเพื่อดูเพิ่มเติม)</span></div>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, voluptatibus! Lorem ipsum dolor sit
-          amet, consectetur adipisicing elit. Consectetur, voluptatibus!
+        <div class="my-box col-lg-7 col-md-7 overflow-auto pt-1 px-2 pb-1 my-scroll-side">
+          <div class="drug_arg">
+            <span class="fw-bold">แพ้ยา: </span>
+            <span style="font-size: 1rem!important;"> (หากมีหลายรายการ โปรดเลื่อนเพื่อดูเพิ่มเติม)</span></div>
+          Ferrous Fumarate tab (A), Balm (C), Calcium Carbonate, Ferrous Fumarate, Amoxicillin, Phenyl salicylate, Chloramphenicol,
+          Ferrous Fumarate tab (A), Balm (C), Calcium Carbonate, Ferrous Fumarate, Amoxicillin, Phenyl salicylate, Chloramphenicol
         </div>
         <!--        <form class="col-sm-auto col-md-auto col-lg-auto mb-3 mb-lg-0 me-lg-3">-->
         <!--          <input type="search" class="form-control rounded-pill" placeholder="Search..." aria-label="Search">-->
@@ -54,7 +54,6 @@ import io from 'socket.io-client';
 // import * as socket from "socket.io-client/build/esm-debug/on";
 
 require('dotenv').config();
-
 export default {
   name: "NavBar",
   data() {
@@ -159,8 +158,10 @@ header {
 }
 
 .my-box {
-  border: #2c3e50 solid 1px;
   height: 6rem;
+  border-radius: 5px;
+  background-color: #ffe6e6;
+  max-width: 50%;
 }
 
 .drug_arg {

@@ -6,12 +6,20 @@
 <script>
 // @ is an alias to /src
 // import NavBar from '@/components/NavBar'
+import $ from 'jquery';
 
 export default {
   name: 'Home',
   components: {
     // NavBar
   },
+  mounted() {
+    $(function() {
+      $(this).bind("contextmenu", function(e) {
+        e.preventDefault();
+      });
+    });
+  }
 }
 </script>
 
@@ -81,10 +89,19 @@ export default {
   color: black !important;
 }
 
-
-
 .bg-soft1 {
   background-color: var(--color-1) !important;
+}
+
+.my-scroll-side {
+  height: 82vh;
+  overflow-y: scroll;
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  /*scrollbar-width: none; !* for Firefox *!*/
+}
+
+.my-scroll-side::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }
 
 </style>

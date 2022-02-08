@@ -83,14 +83,5 @@ export default {
   line-height: 0.7rem;
 }
 
-.my-scroll-side {
-  height: 82vh;
-  overflow-y: scroll;
-  -ms-overflow-style: none; /* for Internet Explorer, Edge */
-  /*scrollbar-width: none; !* for Firefox *!*/
-}
 
-.my-scroll-side::-webkit-scrollbar {
-  display: none; /* for Chrome, Safari, and Opera */
-}
 </style>
