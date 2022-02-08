@@ -62,9 +62,9 @@
             </thead>
             <tbody>
             <tr v-for="diag in visit0.data.diag" :key="diag.id">
-              <td>{{ diag.ICD10 }}</td>
-              <td>{{ diag.DiagName }}</td>
-              <td>{{ diag.DiagType }}</td>
+              <td>{{ diag.icd10 }}</td>
+              <td>{{ diag.diagname }}</td>
+              <td>{{ diag.diagtype }}</td>
             </tr>
             </tbody>
           </table>
@@ -87,7 +87,7 @@
             </thead>
             <tbody>
             <tr v-for="drug in visit0.data.drug" :key="drug.id">
-              <td>{{ drug.DrugName }}</td>
+              <td>{{ drug.drugname }}</td>
               <td>{{ drug.drugusage }}</td>
               <td>{{ drug.qty }}</td>
             </tr>

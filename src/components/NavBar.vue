@@ -20,14 +20,23 @@
 
         <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-5 mb-md-0 d-block justify-content-start">
           <div class="d-block"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}</div>
+          <div class="d-block"><span class="fw-bold">ฉีดวัคซีนล่าสุดเมื่อ: </span><span>{{
+              getThaiDate(max_date_vac)
+            }}</span></div>
           <div class="d-block"><span class="fw-bold">วัคซีนโควิด:</span>
             <span class="ms-1 badge bg-soft1 text-dark rounded-pill" v-for="imm in imms"
                   :key="imm.id">{{ imm.vaccine_dose_no }}. {{ imm.vaccine_manufacturer_name }}</span>
           </div>
-          <div class="d-block fw-bold">วันที่ฉีดวัคซีนล่าสุด: </div>
         </div>
       </div>
-      <div class="d-flex">
+      <div class="d-flex justify-content-end">
+        <div class="my-box col-lg-7 col-md-7 overflow-auto pt-1 px-2 pb-1">
+          <div class="drug_arg fa-3x">
+            <i class="fa-solid fa-skull-crossbones fa-fade"></i>แพ้ยา
+            <span style="font-size: 1rem!important;">(หากมีหลายรายการ โปรดเลื่อนเพื่อดูเพิ่มเติม)</span></div>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, voluptatibus! Lorem ipsum dolor sit
+          amet, consectetur adipisicing elit. Consectetur, voluptatibus!
+        </div>
         <!--        <form class="col-sm-auto col-md-auto col-lg-auto mb-3 mb-lg-0 me-lg-3">-->
         <!--          <input type="search" class="form-control rounded-pill" placeholder="Search..." aria-label="Search">-->
         <!--        </form>-->
@@ -53,7 +62,8 @@ export default {
       getVisits: null,
       imms: null,
       patient: [],
-      patient_img: ''
+      patient_img: '',
+      max_date_vac: ''
     }
   },
   props: {
@@ -67,12 +77,15 @@ export default {
         .then(response => {
           // handle success
           this.imms = response.data.result.vaccine_certificate[0].vaccination_list;
-          // console.log( 'is max = '+ Math.max(response.data.result.vaccine_certificate[0].vaccination_list[0].vaccine_dose_no));
           let dose_arr = response.data.result.vaccine_certificate[0].vaccination_list;
           console.log(dose_arr);
-          console.log( 'is max = '+ Math.max.apply(Math, dose_arr.map(function(o) { return o.y; })));
-
-
+          let maxDose = Math.max.apply(Math, dose_arr.map(function (o) {
+            return o.vaccine_dose_no;
+          }));
+          console.log(maxDose);
+          let vacdate = dose_arr.find(x => x.vaccine_dose_no === maxDose).vaccine_date;
+          console.log(vacdate);
+          this.max_date_vac = vacdate;
           // console.log(this.visits);
         })
         .catch(function (error) {
@@ -143,6 +156,16 @@ export default {
 <style scoped>
 header {
   background: white;
+}
+
+.my-box {
+  border: #2c3e50 solid 1px;
+  height: 6rem;
+}
+
+.drug_arg {
+  font-size: 1.2rem;
+  color: red;
 }
 
 .border-bottom {
