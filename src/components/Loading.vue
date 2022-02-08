@@ -43,7 +43,7 @@ export default {
   bottom: 0;
   /*background-color: rgba(0, 0, 0, 0.15);*/
   z-index: 0;
-  cursor: pointer;
+  cursor: wait;
 }
 
 /*https://projects.lukehaas.me/css-loaders/*/
@@ -58,7 +58,7 @@ export default {
   position: fixed;
   left: 50%;
   top: 30%;
-  margin-left: -4em;
+  /*margin-left: -4em;*/
 }
 .text-info {
   color: var(--main-color)!important;

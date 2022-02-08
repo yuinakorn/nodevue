@@ -32,16 +32,13 @@ export default {
   methods: {
     getClass(result) {
       if (result === 'OPD') {
-          return 'badge bg-primary-my rounded-pill';
-      } 
-      else if (result === 'IPD') {
-        
+        return 'badge bg-primary-my rounded-pill';
+      } else if (result === 'IPD') {
         return 'badge bg-danger-my rounded-pill';
-      } 
-      else if (result === 'ER') {
-          return 'badge bg-warning-my rounded-pill';
-      } else  {
-          return 'badge bg-light text-dark rounded-pill';
+      } else if (result === 'ER') {
+        return 'badge bg-warning-my rounded-pill';
+      } else {
+        return 'badge bg-light text-dark rounded-pill';
       }
     },
     getThaiDate(thd) {
@@ -85,12 +82,14 @@ export default {
 .line-height07 {
   line-height: 0.7rem;
 }
+
 .my-scroll-side {
   height: 82vh;
   overflow-y: scroll;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   /*scrollbar-width: none; !* for Firefox *!*/
 }
+
 .my-scroll-side::-webkit-scrollbar {
   display: none; /* for Chrome, Safari, and Opera */
 }

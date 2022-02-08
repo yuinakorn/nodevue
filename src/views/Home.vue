@@ -1,7 +1,7 @@
 <template>
   <body>
   <NavBar :visits="visits"/>
-  <div class="container-fluid pt-3">
+  <div class="container-fluid pt-3" style="position: relative">
     <div class="row">
       <IsLoading v-if="loading"/>
       <SideBar :visits="visits"/>
@@ -93,6 +93,7 @@ body {
   position: relative;
   background-color: #F8F8F8;
 }
+
 
 /*.home {*/
 /*  background: #FBFBFB;*/

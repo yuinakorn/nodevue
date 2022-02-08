@@ -24,7 +24,7 @@
             <span class="ms-1 badge bg-soft1 text-dark rounded-pill" v-for="imm in imms"
                   :key="imm.id">{{ imm.vaccine_dose_no }}. {{ imm.vaccine_manufacturer_name }}</span>
           </div>
-          <!--          <div class="d-block fw-bold">ประวัติติดเชื่อโควิด: </div>-->
+          <div class="d-block fw-bold">วันที่ฉีดวัคซีนล่าสุด: </div>
         </div>
       </div>
       <div class="d-flex">
@@ -66,8 +66,13 @@ export default {
     axios.get(url)
         .then(response => {
           // handle success
-          console.log(response.data.result.vaccine_certificate[0].vaccination_list);
           this.imms = response.data.result.vaccine_certificate[0].vaccination_list;
+          // console.log( 'is max = '+ Math.max(response.data.result.vaccine_certificate[0].vaccination_list[0].vaccine_dose_no));
+          let dose_arr = response.data.result.vaccine_certificate[0].vaccination_list;
+          console.log(dose_arr);
+          console.log( 'is max = '+ Math.max.apply(Math, dose_arr.map(function(o) { return o.y; })));
+
+
           // console.log(this.visits);
         })
         .catch(function (error) {
@@ -79,8 +84,6 @@ export default {
         });
 
     const sockets = io(process.env.VUE_APP_APIURL);
-    // const sockets = io('http://122.155.219.133:5001');
-    console.log(process.env.VUE_APP_APIURL);
     sockets.on("connect", () => {
       let hcode = this.$route.params.hcode;
       // event get patient
@@ -89,7 +92,6 @@ export default {
       sockets.on('patient', (message) => {
         try {
           let resObj = JSON.parse(message);
-          console.log(resObj);
           this.patient = resObj[0];
           this.patient_img = resObj[0].image;
           console.log(this.patient);

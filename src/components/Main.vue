@@ -159,7 +159,6 @@
 </template>
 
 <script>
-// import {ContentLoader} from "vue-content-loader";
 
 export default {
   name: 'HomePage',
@@ -177,7 +176,6 @@ export default {
       if (result === 'OPD') {
         return 'badge bg-primary-my rounded-pill';
       } else if (result === 'IPD') {
-
         return 'badge bg-danger-my rounded-pill';
       } else if (result === 'ER') {
         return 'badge bg-warning-my rounded-pill';
@@ -290,4 +288,5 @@ a {
   background-color: var(--main-color);
   color: white;
 }
+
 </style>
