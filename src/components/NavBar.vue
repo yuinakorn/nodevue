@@ -34,8 +34,10 @@
           <div class="drug_arg">
             <span class="fw-bold">แพ้ยา: </span>
             <span style="font-size: 1rem!important;"> (หากมีหลายรายการ โปรดเลื่อนเพื่อดูเพิ่มเติม)</span></div>
-          Ferrous Fumarate tab (A), Balm (C), Calcium Carbonate, Ferrous Fumarate, Amoxicillin, Phenyl salicylate, Chloramphenicol,
-          Ferrous Fumarate tab (A), Balm (C), Calcium Carbonate, Ferrous Fumarate, Amoxicillin, Phenyl salicylate, Chloramphenicol
+          Ferrous Fumarate tab (A), Balm (C), Calcium Carbonate, Ferrous Fumarate, Amoxicillin, Phenyl salicylate,
+          Chloramphenicol,
+          Ferrous Fumarate tab (A), Balm (C), Calcium Carbonate, Ferrous Fumarate, Amoxicillin, Phenyl salicylate,
+          Chloramphenicol
         </div>
         <!--        <form class="col-sm-auto col-md-auto col-lg-auto mb-3 mb-lg-0 me-lg-3">-->
         <!--          <input type="search" class="form-control rounded-pill" placeholder="Search..." aria-label="Search">-->
@@ -77,13 +79,13 @@ export default {
           // handle success
           this.imms = response.data.result.vaccine_certificate[0].vaccination_list;
           let dose_arr = response.data.result.vaccine_certificate[0].vaccination_list;
-          console.log(dose_arr);
+          // console.log(dose_arr);
           let maxDose = Math.max.apply(Math, dose_arr.map(function (o) {
             return o.vaccine_dose_no;
           }));
-          console.log(maxDose);
+          // console.log(maxDose);
           let vacdate = dose_arr.find(x => x.vaccine_dose_no === maxDose).vaccine_date;
-          console.log(vacdate);
+          // console.log(vacdate);
           this.max_date_vac = vacdate;
           // console.log(this.visits);
         })
@@ -106,7 +108,7 @@ export default {
           let resObj = JSON.parse(message);
           this.patient = resObj[0];
           this.patient_img = resObj[0].image;
-          console.log(this.patient);
+          // console.log(this.patient);
         } catch (error) {
           console.log(error);
         }
@@ -132,15 +134,20 @@ export default {
   },
   methods: {
     getThaiDate(thd) {
-      const y = new Date(thd);
-      let year = y.getFullYear();
-      const m = new Date(thd);
-      let month = m.getMonth();
-      const d = new Date(thd);
-      let day = d.getDay();
+      // console.log(thd);
+      let ymd = new Date(thd);
+      let year = ymd.getFullYear();
+      let month = ymd.getMonth();
+      let day = ymd.getDate();
       // console.log(year);
-      const date = new Date(year, month, day)
+      // console.log(month);
+      // console.log(day);
+      // let today = new Date(1985,11,2);
+      // console.log(today);
+      const date = new Date(year, month, day);
+      // console.log('is date = ' + date);
       const resultd = date.toLocaleDateString('th-TH', {
+        // timeZone: "UTC",
         year: 'numeric',
         month: 'short',
         // month: '2-digit',
