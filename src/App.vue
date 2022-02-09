@@ -13,6 +13,22 @@ export default {
   components: {
     // NavBar
   },
+  methods: {
+    getThaiDate(thd) {
+      let ymd = new Date(thd);
+      let year = ymd.getFullYear();
+      let month = ymd.getMonth();
+      let day = ymd.getDate();
+      const date = new Date(year, month, day)
+      const resultd = date.toLocaleDateString('th-TH', {
+        year: 'numeric',
+        month: 'short',
+        // month: '2-digit',
+        day: '2-digit',
+      });
+      return resultd;
+    }
+  },
   mounted() {
     $(function() {
       $(this).bind("contextmenu", function(e) {

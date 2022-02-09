@@ -6,7 +6,7 @@
          v-for="visit in visits" :key="visit.id">
         <div class="col-4">
           <!--          <div class="fw-bold line-height07">{{ visit.dateserv }}</div>-->
-          <div class="fw-bold line-height07">{{ getThaiDate(visit.dateserv) }}</div>
+          <div class="fw-bold line-height07 my-fs-s">{{ getThaiDate(visit.dateserv) }}</div>
           <span class="text-sub-title line-height07">{{ visit.hname }}</span>
         </div>
         <div class="text-truncate">
@@ -42,12 +42,10 @@ export default {
       }
     },
     getThaiDate(thd) {
-      // console.log(thd);
       let ymd = new Date(thd);
       let year = ymd.getFullYear();
       let month = ymd.getMonth();
       let day = ymd.getDate();
-      // console.log(year);
       const date = new Date(year, month, day)
       const resultd = date.toLocaleDateString('th-TH', {
         year: 'numeric',
@@ -81,5 +79,8 @@ export default {
   line-height: 0.7rem;
 }
 
+.my-fs-s {
+  font-size: 0.97rem;
+}
 
 </style>

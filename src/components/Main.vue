@@ -216,18 +216,14 @@ export default {
       }
     },
     getThaiDate(thd) {
-      // console.log(thd);
-      const y = new Date(thd);
-      let year = y.getFullYear();
-      const m = new Date(thd);
-      let month = m.getMonth();
-      const d = new Date(thd);
-      let day = d.getDay();
-      // console.log(year);
+      let ymd = new Date(thd);
+      let year = ymd.getFullYear();
+      let month = ymd.getMonth();
+      let day = ymd.getDate();
       const date = new Date(year, month, day)
       const resultd = date.toLocaleDateString('th-TH', {
         year: 'numeric',
-        month: 'long',
+        month: 'short',
         // month: '2-digit',
         day: '2-digit',
       });

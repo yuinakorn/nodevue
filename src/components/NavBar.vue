@@ -134,20 +134,12 @@ export default {
   },
   methods: {
     getThaiDate(thd) {
-      // console.log(thd);
       let ymd = new Date(thd);
       let year = ymd.getFullYear();
       let month = ymd.getMonth();
       let day = ymd.getDate();
-      // console.log(year);
-      // console.log(month);
-      // console.log(day);
-      // let today = new Date(1985,11,2);
-      // console.log(today);
       const date = new Date(year, month, day);
-      // console.log('is date = ' + date);
       const resultd = date.toLocaleDateString('th-TH', {
-        // timeZone: "UTC",
         year: 'numeric',
         month: 'short',
         // month: '2-digit',
