@@ -33,11 +33,11 @@
         <div class="my-box col-lg-7 col-md-7 overflow-auto pt-1 px-2 pb-1 my-scroll-side">
           <div class="drug_arg">
             <span class="fw-bold">แพ้ยา: </span>
-            <span style="font-size: 1rem!important;"> (หากมีหลายรายการ โปรดเลื่อนเพื่อดูเพิ่มเติม)</span></div>
-          Ferrous Fumarate tab (A), Balm (C), Calcium Carbonate, Ferrous Fumarate, Amoxicillin, Phenyl salicylate,
+            <span style="font-size: 0.9rem!important;"> (หากมีหลายรายการ โปรดเลื่อนเพื่อดูเพิ่มเติม)</span></div>
+          <!-- Ferrous Fumarate tab (A), Balm (C), Calcium Carbonate, Ferrous Fumarate, Amoxicillin, Phenyl salicylate,
           Chloramphenicol,
           Ferrous Fumarate tab (A), Balm (C), Calcium Carbonate, Ferrous Fumarate, Amoxicillin, Phenyl salicylate,
-          Chloramphenicol
+          Chloramphenicol -->
         </div>
         <!--        <form class="col-sm-auto col-md-auto col-lg-auto mb-3 mb-lg-0 me-lg-3">-->
         <!--          <input type="search" class="form-control rounded-pill" placeholder="Search..." aria-label="Search">-->
@@ -161,11 +161,13 @@ header {
   border-radius: 5px;
   background-color: #ffe6e6;
   max-width: 50%;
+  width: 49rem;
 }
 
 .drug_arg {
   font-size: 1.2rem;
   color: red;
+
 }
 
 .border-bottom {
