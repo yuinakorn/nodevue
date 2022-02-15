@@ -108,7 +108,7 @@ export default {
           let resObj = JSON.parse(message);
           this.patient = resObj[0];
           this.patient_img = resObj[0].image;
-          // console.log(this.patient);
+          console.log(this.patient);
         } catch (error) {
           console.log(error);
         }

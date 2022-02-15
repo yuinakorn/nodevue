@@ -76,7 +76,7 @@ export default {
       socket.on('viewer', (message) => {
         try {
           this.visits = JSON.parse(message);
-          // console.log(this.visits);
+          console.log(this.visits);
           this.loading = false
         } catch (error) {
           console.log(error);
