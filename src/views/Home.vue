@@ -77,6 +77,7 @@ export default {
         try {
           this.visits = JSON.parse(message);
           console.log(this.visits);
+          console.log(message);
           this.loading = false
         } catch (error) {
           console.log(error);
