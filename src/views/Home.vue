@@ -66,7 +66,8 @@ export default {
   // },
   async mounted() {
     this.loading = true;
-    const socket = io(process.env.VUE_APP_APIURL);
+    // const socket = io(process.env.VUE_APP_APIURL);
+    const socket = io('http://122.155.219.133:5001');
     await socket.on("connect", () => {
       let cids = this.$route.params.cid;
 
@@ -76,8 +77,8 @@ export default {
       socket.on('viewer', (message) => {
         try {
           this.visits = JSON.parse(message);
-          console.log(this.visits);
-          console.log(message);
+          // console.warn('This Visits => ' + this.visits);
+          console.log('This message => ' + message);
           this.loading = false
         } catch (error) {
           console.log(error);

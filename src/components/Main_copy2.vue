@@ -1,6 +1,27 @@
 <template>
-  <div class="col-md-6 my-scroll-box" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="180"
+  <div class="col-md-9 my-scroll-box" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="180"
        tabindex="0">
+<!--    <content-loader-->
+<!--        viewBox="0 0 1024 600"-->
+<!--        :speed="2"-->
+<!--        primaryColor="#f3f3f3"-->
+<!--        secondaryColor="#ecebeb"-->
+<!--    >-->
+<!--      <rect x="10" y="40" rx="0" ry="0" width="75" height="10" />-->
+<!--      <rect x="10" y="60" rx="0" ry="0" width="75" height="10" />-->
+<!--      <rect x="10" y="100" rx="0" ry="0" width="75" height="10" />-->
+<!--      <rect x="10" y="80" rx="0" ry="0" width="75" height="10" />-->
+<!--      <rect x="10" y="120" rx="0" ry="0" width="75" height="10" />-->
+<!--      <rect x="110" y="40" rx="0" ry="0" width="570" height="125" />-->
+<!--      <rect x="275" y="63" rx="0" ry="0" width="72" height="4" />-->
+<!--      <rect x="430" y="5" rx="5" ry="5" width="75" height="20" />-->
+<!--      <rect x="110" y="10" rx="0" ry="0" width="200" height="15" />-->
+<!--      <rect x="10" y="5" rx="4" ry="4" width="75" height="20" />-->
+<!--      <circle cx="493" cy="54" r="2" />-->
+<!--      <circle cx="497" cy="47" r="7" />-->
+<!--      <circle cx="497" cy="77" r="7" />-->
+<!--      <circle cx="497" cy="107" r="7" />-->
+<!--    </content-loader>-->
     <div :id="`vn${visit0.vn}`" v-for="visit0 in visits" :key="visit0.id">
       <!--        <h4 id="intro">Introduction to Bootstrap</h4>-->
       <!--      <h4>{{ visit0.dateserv }}</h4>-->
@@ -134,9 +155,7 @@
 
   </div>
   <!-- Bootstrap JS -->
-  <div class="col-md-3">
-    <iframe allow="camera; microphone; fullscreen; display-capture; autoplay" src="https://jitsi.chiangmaihealth.go.th/ForthcomingTriggersAttemptOften" style="height: 100%; width: 100%; border: 0px;"></iframe>
-  </div>
+
 </template>
 
 <script>

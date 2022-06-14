@@ -72,7 +72,8 @@ export default {
   },
   mounted() {
     let cids = this.$route.params.cid;
-    let url = process.env.VUE_APP_VACCINEURL + "/?c=" + cids;
+    // let url = process.env.VUE_APP_VACCINEURL + "/?c=" + cids;
+    let url = 'http://122.155.219.133:8081' + "/?c=" + cids;
     // console.log('vaccineUrl = ' + url);
     axios.get(url)
         .then(response => {
