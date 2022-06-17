@@ -5,12 +5,11 @@
          class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
          v-for="visit in visits" :key="visit.id">
         <div class="col-4">
-          <!--          <div class="fw-bold line-height07">{{ visit.dateserv }}</div>-->
           <div class="fw-bold line-height07 my-fs-s">{{ getThaiDate(visit.dateserv) }}</div>
           <span class="text-sub-title line-height07">{{ visit.hname }}</span>
         </div>
         <div class="text-truncate">
-          <span class="text-muted small">{{ visit.symptom }}</span>
+          <span class="small">{{ visit.symptom }}</span>
         </div>
         <span :class="getClass(visit.depart)">{{ visit.depart }}</span>
       </a>
@@ -81,6 +80,10 @@ export default {
 
 .my-fs-s {
   font-size: 0.97rem;
+}
+
+.active {
+  color: white !important;
 }
 
 </style>

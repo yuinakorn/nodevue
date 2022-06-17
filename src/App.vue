@@ -42,12 +42,13 @@ export default {
 <style>
 :root {
   /*--main-color: #007672;*/
-  --main-color: #20afaa;
+  --main-color: #026c6a;
   /*--border-color: #016460;*/
   --border-color: #20afaa;
 
-  --color-1: #83dad7;
-  --color-warning1: #fad565;
+  --color-1: #026c6a;
+  /*--color-warning1: #fad565;*/
+  --color-warning1: #ffc61b;
 }
 #app {
   /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
@@ -93,7 +94,9 @@ export default {
 }
 
 .bg-primary-my {
-  background-color: #6bd2ff !important;
+  background-color: #08a188 !important;
+  /*background-color: #03a1e6 !important;*/
+  /*background-color: #6bd2ff !important;*/
 }
 
 .bg-danger-my {

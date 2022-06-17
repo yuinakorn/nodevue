@@ -263,6 +263,8 @@ a {
 
 .bg-bar {
   background-color: var(--main-color);
+  /*background-color: var(--main-color);*/
+  /*background-color: var(--main-color);*/
   color: white;
 }
 

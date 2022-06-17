@@ -24,7 +24,7 @@
               getThaiDate(max_date_vac)
             }}</span></div>
           <div class="d-block"><span class="fw-bold">วัคซีนโควิด:</span>
-            <span class="ms-1 badge bg-soft1 text-dark rounded-pill" v-for="imm in imms"
+            <span class="ms-1 badge bg-soft1 text-white rounded-pill" v-for="imm in imms"
                   :key="imm.id">{{ imm.vaccine_dose_no }}. {{ imm.vaccine_manufacturer_name }}</span>
           </div>
         </div>
