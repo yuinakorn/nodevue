@@ -42,8 +42,7 @@ export default {
   },
   async mounted() {
     this.loading = true;
-    // const socket = io(process.env.VUE_APP_APIURL);
-    const socket = io('http://122.155.219.133:5001');
+    const socket = io(process.env.VUE_APP_APIURL);
     await socket.on("connect", () => {
       let cids = this.$route.params.cid;
 
