@@ -1,10 +1,8 @@
 <template>
   <header class="p-2 border-bottom shadow-lg">
     <div class="container-fluid d-flex justify-content-between">
-      <!--      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">-->
       <div class="d-flex">
         <a href="/" class="align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          <!--          <img src="../assets/person_avatar.jpg" width="79">-->
           <img :src="'data:image/png;base64,'+patient_img" height="95" v-if="patient_img != null && patient_img != ''">
           <img src="../assets/person_avatar.jpg" height="95" v-else>
         </a>
@@ -19,7 +17,9 @@
         </div>
 
         <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-5 mb-md-0 d-block justify-content-start">
-          <div class="d-block"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}</div>
+          <div class="d-block" id="telemed"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}
+            <button class="ms-3 btn btn-outline-primary rounded-pill" @click='toggle = !toggle'> Call...</button>
+          </div>
           <div class="d-block"><span class="fw-bold">ฉีดวัคซีนล่าสุดเมื่อ: </span><span>{{
               getThaiDate(max_date_vac)
             }}</span></div>
@@ -34,17 +34,8 @@
           <div class="drug_arg">
             <span class="fw-bold">แพ้ยา: </span>
             <span style="font-size: 0.9rem!important;"> (หากมีหลายรายการ โปรดเลื่อนเพื่อดูเพิ่มเติม)</span></div>
-          <!-- Ferrous Fumarate tab (A), Balm (C), Calcium Carbonate, Ferrous Fumarate, Amoxicillin, Phenyl salicylate,
-          Chloramphenicol,
-          Ferrous Fumarate tab (A), Balm (C), Calcium Carbonate, Ferrous Fumarate, Amoxicillin, Phenyl salicylate,
-          Chloramphenicol -->
         </div>
-        <!--        <form class="col-sm-auto col-md-auto col-lg-auto mb-3 mb-lg-0 me-lg-3">-->
-        <!--          <input type="search" class="form-control rounded-pill" placeholder="Search..." aria-label="Search">-->
-        <!--        </form>-->
-        <!--        <button type="button" class="btn btn-outline-primary rounded-pill me-2">Search</button>-->
       </div>
-
     </div>
   </header>
 </template>
@@ -53,13 +44,14 @@
 
 import axios from "axios";
 import io from 'socket.io-client';
-// import * as socket from "socket.io-client/build/esm-debug/on";
 
 require('dotenv').config();
 export default {
   name: "NavBar",
+  el: '#telemed',
   data() {
     return {
+      toggle: true,
       getVisits: null,
       imms: null,
       patient: [],
@@ -109,29 +101,13 @@ export default {
           let resObj = JSON.parse(message);
           this.patient = resObj[0];
           this.patient_img = resObj[0].image;
-          console.log(this.patient);
+          // console.log(this.patient);
         } catch (error) {
           console.log(error);
         }
       });
     });
 
-    // let patientUlr = process.env.VUE_APP_APIURL + "/api/data/patient/" + cids + "/" + hcods;
-    // console.log(patientUlr);
-    // axios.get(patientUlr)
-    //     .then(response => {
-    //       // handle success
-    //       console.log(response.data[0]);
-    //       this.patient = response.data[0];
-    //       this.patient_img = response.data[0].image;
-    //     })
-    //     .catch(function (error) {
-    //       // handle error
-    //       console.log(error);
-    //     })
-    //     .then(function () {
-    //       // always executed
-    //     });
   },
   methods: {
     getThaiDate(thd) {

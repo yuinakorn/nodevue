@@ -134,8 +134,10 @@
 
   </div>
   <!-- Bootstrap JS -->
-  <div class="col-md-3">
-    <iframe allow="camera; microphone; fullscreen; display-capture; autoplay" src="https://jitsi.chiangmaihealth.go.th/ForthcomingTriggersAttemptOften" style="height: 100%; width: 100%; border: 0px;"></iframe>
+  <div class="col-md-3" v-show='toggle'>
+    <iframe allow="camera; microphone; fullscreen; display-capture; autoplay"
+            src="https://meet.jit.si/964lA3aTqKE"
+            style="height: 100%; width: 100%; border: 0px;"></iframe>
   </div>
 </template>
 
@@ -143,8 +145,12 @@
 
 export default {
   name: 'HomePage',
+  components: {
+
+  },
   data() {
     return {
+      toggle: true,
       formatNum: '',
       number: '',
     }

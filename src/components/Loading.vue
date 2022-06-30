@@ -3,18 +3,6 @@
     <div class="d-flex justify-content-center">
       <div class="spinner-my">
         <div class="loader">Loading...</div>
-<!--        <Spinner name="circle" color="red"/>-->
-<!--        <div class="spinner-border text-info" role="status">-->
-<!--          <span class="visually-hidden">Loading...</span>-->
-<!--        </div>-->
-<!--        <div class="spinner-grow ms-2 text-dark" role="status">-->
-<!--          <span class="visually-hidden">Loading...</span>-->
-<!--        </div>-->
-<!--        <div class="spinner-border ms-2 text-info" role="status">-->
-<!--          <span class="visually-hidden">Loading...</span>-->
-<!--        </div>-->
-<!--        <div class="spinner-grow ms-2 text-dark" role="status">-->
-<!--          <span class="visually-hidden">Loading...</span>-->
 <!--        </div>-->
       </div>
 
