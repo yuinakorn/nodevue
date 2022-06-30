@@ -139,14 +139,15 @@
             src="https://meet.jit.si/964lA3aTqKE"
             style="height: 100%; width: 100%; border: 0px;"></iframe>
   </div>
+  <NavBar @sendData="toggle"/>
 </template>
 
 <script>
-
+import NavBar from "@/components/NavBar";
 export default {
   name: 'HomePage',
   components: {
-
+    NavBar
   },
   data() {
     return {
@@ -159,6 +160,7 @@ export default {
     visits: Array
   },
   methods: {
+
     getClass(result) {
       if (result === 'OPD') {
         return 'badge bg-primary-my rounded-pill';

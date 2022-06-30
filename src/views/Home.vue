@@ -69,7 +69,7 @@ export default {
 <style scoped>
 body {
   position: relative;
-  background-color: #F8F8F8;
+  /*background-color: #F8F8F8;*/
 }
 
 </style>
