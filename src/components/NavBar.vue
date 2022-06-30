@@ -145,7 +145,7 @@ header {
 .my-box {
   height: 6rem;
   border-radius: 5px;
-  background-color: #ffe6e6;
+  /*background-color: #ffe6e6;*/
   max-width: 50%;
   width: 49rem;
 }
