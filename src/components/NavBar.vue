@@ -20,8 +20,9 @@
       <div class="col-lg-6 col-md-6 col-xs-12">
         <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-5 mb-md-0 d-block justify-content-start">
           <div class="d-block" id="telemed"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}
-            <a href="#" class="ms-3 btn btn-outline-primary rounded-pill" @click="childMethod" :class="{'btn-outline-danger': isToggle}">
-              Tele-Medicine</a>
+<!--            <button class="ms-3 btn btn-outline-primary rounded-pill myButton" @click="childMethod">-->
+            <button :class="addBtnClass()" @click="childMethod">
+              {{ msgTele }}</button>
           </div>
           <span v-show="isToggle"></span>
           <div class="d-block"><span class="fw-bold">ฉีดวัคซีนล่าสุดเมื่อ: </span><span>{{
@@ -60,7 +61,8 @@ export default {
       imms: null,
       patient: [],
       patient_img: '',
-      max_date_vac: ''
+      max_date_vac: '',
+      msgTele: 'Tele-Medicine',
     }
   },
   props: {
@@ -115,9 +117,22 @@ export default {
     'sendData'
   ],
   methods: {
+    addBtnClass () {
+      if(this.isToggle === true) {
+        return "ms-3 px-4 btn btn-outline-danger rounded-pill";
+      } else {
+        return "ms-3 btn btn-outline-primary rounded-pill myButton";
+      }
+    },
+
     childMethod () {
       this.isToggle = !this.isToggle;
       this.$emit('customEvent', this.isToggle);
+      if (this.isToggle === true) {
+        this.msgTele = 'วางสาย';
+      } else {
+        this.msgTele = 'Tele-Medicine';
+      }
     },
     sendData() {
       alert('sendData');
@@ -166,5 +181,77 @@ header {
 
 .border-bottom {
   border-bottom: 1px solid #dee2e6 !important;
+}
+
+.myButton {
+  animation-duration: 1750ms ;
+  animation-fill-mode: both ;
+  animation-iteration-count: infinite ;
+  animation-name: button-shadow-throb ;
+  animation-timing-function: linear ;
+}
+
+@keyframes button-shadow-throb {
+  0% {
+    box-shadow:
+        0px 0px 0px 0px #16b99d, /* Ring three - hidden. */
+        0px 0px 0px 0px #13a289, /* Ring two - hidden. */
+        0px 0px 0px 0px #13a289  /* Ring one - hidden. */
+  ;
+  }
+  15% {
+    box-shadow:
+        0px 0px 0px 0px #13a289,
+        0px 0px 0px 0px #13a289,
+        0px 0px 0px 5px #13a289  /* Ring one - enter. */
+  ;
+  }
+  30% {
+    box-shadow:
+        0px 0px 0px 0px #13a289,
+        0px 0px 0px 5px #13a289, /* Ring two - enter. */
+        0px 0px 0px 10px #13A28940
+  ;
+  }
+  45% {
+    box-shadow:
+        0px 0px 0px 5px #13a289, /* Ring three - enter. */
+        0px 0px 0px 10px #13A28940,
+        0px 0px 0px 15px #13A28921
+  ;
+  }
+  /**
+  * Once each ring reaches its outer spread-radius, it's going to fade out using
+  * the alpha-channel on the RGB(A) hex color definition. Notice that the alpha-
+  * channels go from "80" to "00" over the next couple of keyframes.
+  */
+  60% {
+    box-shadow:
+        0px 0px 0px 10px #13A28940,
+        0px 0px 0px 15px #13A28921,
+        0px 0px 15px 15px #007cff00
+  ;
+  }
+  75% {
+    box-shadow:
+        0px 0px 0px 15px #13A28921,
+        0px 0px 15px 15px #13A28900,
+        0px 0px 15px 15px #007cff00
+  ;
+  }
+  90% {
+    box-shadow:
+        0px 0px 15px 15px #13A28900,
+        0px 0px 15px 15px #13A28900,
+        0px 0px 15px 15px #13A28900
+  ;
+  }
+  100% {
+    box-shadow:
+        0px 0px 15px 15px #13A28900,
+        0px 0px 15px 15px #13A28900,
+        0px 0px 15px 15px #13A28900
+  ;
+  }
 }
 </style>
