@@ -1,5 +1,4 @@
 <template>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
   <header class="p-2">
     <div class="container-fluid d-flex justify-content-between">
       <div class="d-flex col-lg-3 col-md-3 col-xs-12">

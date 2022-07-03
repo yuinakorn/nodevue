@@ -42,7 +42,6 @@ export default {
   data() {
     return {
       sendToggle: true,
-      data: "Yui",
       visits: null,
       loading: false,
       overlay: false,
@@ -52,7 +51,7 @@ export default {
   methods: {
     parentMethod(myParam) {
       this.toggle = myParam;
-      console.log('this myParam => '+ myParam);
+      // console.log('this myParam => '+ myParam);
     }
   },
   async mounted() {
@@ -68,7 +67,7 @@ export default {
         try {
           this.visits = JSON.parse(message);
           // console.warn('This Visits => ' + this.visits);
-          console.log('This message => ' + message);
+          // console.log('This message => ' + message);
           this.loading = false
         } catch (error) {
           console.log(error);

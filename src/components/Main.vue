@@ -134,13 +134,12 @@
             style="height: 100%; width: 100%; border: 0;"></iframe>
   </div>
 </template>
-<!--https://meet.jit.si/964lA3aTqKE-->
 <script>
 
 // import NavBar from "@/components/NavBar";
 export default {
-  name: 'HomePage',
-  // name: 'Main',
+  // name: 'HomePage',
+  name: 'Main',
   // components: {NavBar},
   data() {
     return {
