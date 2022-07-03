@@ -1,8 +1,9 @@
 <template>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
   <header class="p-2">
     <div class="container-fluid d-flex justify-content-between">
-      <div class="d-flex">
-        <a href="/" class="align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+      <div class="d-flex col-lg-3 col-md-3 col-xs-12">
+        <a class="align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
           <img :src="'data:image/png;base64,'+patient_img" height="95" v-if="patient_img != null && patient_img != ''">
           <img src="../assets/person_avatar.jpg" height="95" v-else>
         </a>
@@ -15,11 +16,14 @@
           <div class="d-block"><span class="fw-bold">อายุ:</span> <span class="me-1">{{ patient.age }}</span> ปี</div>
           <div class="d-block"><span class="fw-bold">วันเกิด:</span> {{ getThaiDate(patient.birthday) }}</div>
         </div>
-
+      </div>
+      <div class="col-lg-6 col-md-6 col-xs-12">
         <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-5 mb-md-0 d-block justify-content-start">
           <div class="d-block" id="telemed"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}
-            <button class="ms-3 btn btn-outline-primary rounded-pill" @click='sendData'> Tele-Medicine</button>
+            <a href="#" class="ms-3 btn btn-outline-primary rounded-pill" @click="childMethod" :class="{'btn-outline-danger': isToggle}">
+              Tele-Medicine</a>
           </div>
+          <span v-show="isToggle"></span>
           <div class="d-block"><span class="fw-bold">ฉีดวัคซีนล่าสุดเมื่อ: </span><span>{{
               getThaiDate(max_date_vac)
             }}</span></div>
@@ -29,8 +33,8 @@
           </div>
         </div>
       </div>
-      <div class="d-flex justify-content-end">
-        <div class="my-box col-lg-7 col-md-7 overflow-auto pt-1 px-2 pb-1 my-scroll-side">
+      <div class="col-auto">
+        <div class="my-box col overflow-auto pt-1 px-2 pb-1 my-scroll-side">
           <div class="drug_arg">
             <span class="fw-bold">แพ้ยา: </span>
             <!--            <span style="font-size: 0.9rem!important;"> (หากมีหลายรายการ โปรดเลื่อนเพื่อดูเพิ่มเติม)</span>-->
@@ -42,7 +46,6 @@
 </template>
 
 <script>
-
 import axios from "axios";
 import io from 'socket.io-client';
 
@@ -52,7 +55,7 @@ export default {
   el: '#telemed',
   data() {
     return {
-      toggle: true,
+      isToggle: false,
       getVisits: null,
       imms: null,
       patient: [],
@@ -112,6 +115,10 @@ export default {
     'sendData'
   ],
   methods: {
+    childMethod () {
+      this.isToggle = !this.isToggle;
+      this.$emit('customEvent', this.isToggle);
+    },
     sendData() {
       alert('sendData');
       let CefSharp;

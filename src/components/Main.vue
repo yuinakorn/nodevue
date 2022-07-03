@@ -1,5 +1,6 @@
 <template>
-  <div class="col-md-6 my-scroll-box" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="180"
+<!--  <div class="col-md-6 my-scroll-box" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="180"-->
+  <div :class="showClass(toggles)" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="180"
        tabindex="0">
     <div :id="`vn${visit0.vn}`" v-for="visit0 in visits" :key="visit0.id">
       <!--        <h4 id="intro">Introduction to Bootstrap</h4>-->
@@ -78,7 +79,6 @@
         <!--        </small>-->
       </div>
 
-      <!--      <div class="my-3 p-3 bg-body rounded shadow-sm">-->
       <div :class="labClass(visit0.data.lab.length)">
         <h6 class="border-bottom pb-2 mb-0"><strong>Laboratory</strong></h6>
         <div class="d-flex text-muted pt-3">
@@ -103,9 +103,6 @@
             </tbody>
           </table>
         </div>
-        <!--        <small class="d-block text-end mt-3">-->
-        <!--          <a href="#">All updates</a>-->
-        <!--        </small>-->
       </div>
 
       <!--      <div class="my-3 p-3 bg-body rounded shadow-sm">-->
@@ -125,41 +122,49 @@
             </tbody>
           </table>
         </div>
-        <!--        <small class="d-block text-end mt-3">-->
-        <!--          <a href="#">All updates</a>-->
-        <!--        </small>-->
       </div>
 
     </div>
 
   </div>
   <!-- Bootstrap JS -->
-  <div class="col-md-3" v-show='toggle'>
+  <div v-if="toggles" class="col-md-3 col-lg-3">
     <iframe allow="camera; microphone; fullscreen; display-capture; autoplay"
-            src="https://meet.jit.si/964lA3aTqKE"
-            style="height: 100%; width: 100%; border: 0px;"></iframe>
+            :src="getJitsiUrl(visits[0].cid)"
+            style="height: 100%; width: 100%; border: 0;"></iframe>
   </div>
-  <NavBar @sendData="toggle"/>
 </template>
-
+<!--https://meet.jit.si/964lA3aTqKE-->
 <script>
-import NavBar from "@/components/NavBar";
+
+// import NavBar from "@/components/NavBar";
 export default {
   name: 'HomePage',
-  components: {
-    NavBar
-  },
+  // name: 'Main',
+  // components: {NavBar},
   data() {
     return {
-      toggle: true,
       formatNum: '',
       number: '',
+      isActive: 'col-md-6 my-scroll-box'
     }
   },
   props: {
-    visits: Array
+    visits: Array,
+    toggles: Boolean
   },
+
   methods: {
+    getJitsiUrl(cid) {
+      return `https://jitsi.chiangmaihealth.go.th/${cid}`;
+    },
+    showClass(myParam){
+      if(myParam === true) {
+        return 'col-md-6 my-scroll-box'
+      } else {
+        return 'col-md-9 my-scroll-box'
+      }
+    },
 
     getClass(result) {
       if (result === 'OPD') {
@@ -240,6 +245,7 @@ export default {
     }
   },
   // components: {ContentLoader}
+
 }
 </script>
 

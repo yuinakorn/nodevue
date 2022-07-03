@@ -1,11 +1,17 @@
 <template>
   <body>
-  <NavBar :visits="visits"/>
+  <NavBar
+      :visits="visits"
+      @customEvent="parentMethod"
+  />
   <div class="container-fluid pt-3" style="position: relative">
     <div class="row">
       <IsLoading v-if="loading"/>
       <SideBar :visits="visits"/>
-      <Main :visits="visits"/>
+      <Main
+          :visits="visits"
+          :toggles="toggle"
+      />
     </div>
   </div>
   </body>
@@ -35,9 +41,18 @@ export default {
   },
   data() {
     return {
+      sendToggle: true,
+      data: "Yui",
       visits: null,
       loading: false,
-      overlay: false
+      overlay: false,
+      toggle: false
+    }
+  },
+  methods: {
+    parentMethod(myParam) {
+      this.toggle = myParam;
+      console.log('this myParam => '+ myParam);
     }
   },
   async mounted() {
@@ -53,7 +68,7 @@ export default {
         try {
           this.visits = JSON.parse(message);
           // console.warn('This Visits => ' + this.visits);
-          // console.log('This message => ' + message);
+          console.log('This message => ' + message);
           this.loading = false
         } catch (error) {
           console.log(error);
