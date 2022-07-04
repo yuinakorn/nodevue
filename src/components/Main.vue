@@ -90,6 +90,7 @@
               <th>unit</th>
               <th>ref.</th>
               <th>remark</th>
+              <th>วันที่</th>
             </tr>
             </thead>
             <tbody>
@@ -99,6 +100,7 @@
               <td>{{ lab.unit }}</td>
               <td>{{ lab.ref }}</td>
               <td>{{ lab.remark }}</td>
+              <td>{{ getThaiDate(lab.laborder_date) }}</td>
             </tr>
             </tbody>
           </table>

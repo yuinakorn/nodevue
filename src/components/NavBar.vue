@@ -19,9 +19,10 @@
       <div class="col-lg-6 col-md-6 col-xs-12">
         <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-5 mb-md-0 d-block justify-content-start">
           <div class="d-block" id="telemed"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}
-<!--            <button class="ms-3 btn btn-outline-primary rounded-pill myButton" @click="childMethod">-->
+            <!--            <button class="ms-3 btn btn-outline-primary rounded-pill myButton" @click="childMethod">-->
             <button :class="addBtnClass()" @click="childMethod">
-              {{ msgTele }}</button>
+              {{ msgTele }}
+            </button>
           </div>
           <span v-show="isToggle"></span>
           <div class="d-block"><span class="fw-bold">ฉีดวัคซีนล่าสุดเมื่อ: </span><span>{{
@@ -104,8 +105,6 @@ export default {
           let resObj = JSON.parse(message);
           this.patient = resObj[0];
           this.patient_img = resObj[0].image;
-          console.log("messge => "+message);
-          console.log("This is patient => "+ JSON.stringify(this.patient));
         } catch (error) {
           console.log(error);
         }
@@ -117,15 +116,15 @@ export default {
     'sendData'
   ],
   methods: {
-    addBtnClass () {
-      if(this.isToggle === true) {
+    addBtnClass() {
+      if (this.isToggle === true) {
         return "ms-3 px-4 btn btn-outline-danger rounded-pill";
       } else {
         return "ms-3 btn btn-outline-primary rounded-pill myButton";
       }
     },
 
-    childMethod () {
+    childMethod() {
       this.isToggle = !this.isToggle;
       this.$emit('customEvent', this.isToggle);
       if (this.isToggle === true) {
@@ -135,9 +134,11 @@ export default {
       }
       // send data to webview
       let CefSharp;
-      let sc;
-      CefSharp.PostMessage({"data_type": sc.script_name})
+      // let sc;
+      CefSharp.PostMessage({"data_type": "Telamed", "value": true})
       this.$emit(this.isToggle);
+
+      // {"data_type":"Telamed","value",true}
     },
     // sendData() {
     //   alert('sendData');
@@ -189,41 +190,29 @@ header {
 }
 
 .myButton-unused {
-  animation-duration: 1750ms ;
-  animation-fill-mode: both ;
-  animation-iteration-count: infinite ;
-  animation-name: button-shadow-throb ;
-  animation-timing-function: linear ;
+  animation-duration: 1750ms;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  animation-name: button-shadow-throb;
+  animation-timing-function: linear;
 }
 
 @keyframes button-shadow-throb {
   0% {
-    box-shadow:
-        0px 0px 0px 0px #16b99d, /* Ring three - hidden. */
-        0px 0px 0px 0px #13a289, /* Ring two - hidden. */
-        0px 0px 0px 0px #13a289  /* Ring one - hidden. */
-  ;
+    box-shadow: 0px 0px 0px 0px #16b99d, /* Ring three - hidden. */ 0px 0px 0px 0px #13a289, /* Ring two - hidden. */ 0px 0px 0px 0px #13a289 /* Ring one - hidden. */;
   }
   15% {
-    box-shadow:
-        0px 0px 0px 0px #13a289,
-        0px 0px 0px 0px #13a289,
-        0px 0px 0px 5px #13a289  /* Ring one - enter. */
-  ;
+    box-shadow: 0px 0px 0px 0px #13a289,
+    0px 0px 0px 0px #13a289,
+    0px 0px 0px 5px #13a289 /* Ring one - enter. */;
   }
   30% {
-    box-shadow:
-        0px 0px 0px 0px #13a289,
-        0px 0px 0px 5px #13a289, /* Ring two - enter. */
-        0px 0px 0px 10px #13A28940
-  ;
+    box-shadow: 0px 0px 0px 0px #13a289,
+    0px 0px 0px 5px #13a289, /* Ring two - enter. */ 0px 0px 0px 10px #13A28940;
   }
   45% {
-    box-shadow:
-        0px 0px 0px 5px #13a289, /* Ring three - enter. */
-        0px 0px 0px 10px #13A28940,
-        0px 0px 0px 15px #13A28921
-  ;
+    box-shadow: 0px 0px 0px 5px #13a289, /* Ring three - enter. */ 0px 0px 0px 10px #13A28940,
+    0px 0px 0px 15px #13A28921;
   }
   /**
   * Once each ring reaches its outer spread-radius, it's going to fade out using
@@ -231,32 +220,24 @@ header {
   * channels go from "80" to "00" over the next couple of keyframes.
   */
   60% {
-    box-shadow:
-        0px 0px 0px 10px #13A28940,
-        0px 0px 0px 15px #13A28921,
-        0px 0px 15px 15px #007cff00
-  ;
+    box-shadow: 0px 0px 0px 10px #13A28940,
+    0px 0px 0px 15px #13A28921,
+    0px 0px 15px 15px #007cff00;
   }
   75% {
-    box-shadow:
-        0px 0px 0px 15px #13A28921,
-        0px 0px 15px 15px #13A28900,
-        0px 0px 15px 15px #007cff00
-  ;
+    box-shadow: 0px 0px 0px 15px #13A28921,
+    0px 0px 15px 15px #13A28900,
+    0px 0px 15px 15px #007cff00;
   }
   90% {
-    box-shadow:
-        0px 0px 15px 15px #13A28900,
-        0px 0px 15px 15px #13A28900,
-        0px 0px 15px 15px #13A28900
-  ;
+    box-shadow: 0px 0px 15px 15px #13A28900,
+    0px 0px 15px 15px #13A28900,
+    0px 0px 15px 15px #13A28900;
   }
   100% {
-    box-shadow:
-        0px 0px 15px 15px #13A28900,
-        0px 0px 15px 15px #13A28900,
-        0px 0px 15px 15px #13A28900
-  ;
+    box-shadow: 0px 0px 15px 15px #13A28900,
+    0px 0px 15px 15px #13A28900,
+    0px 0px 15px 15px #13A28900;
   }
 }
 </style>
