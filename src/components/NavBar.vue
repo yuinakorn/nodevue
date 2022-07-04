@@ -104,7 +104,8 @@ export default {
           let resObj = JSON.parse(message);
           this.patient = resObj[0];
           this.patient_img = resObj[0].image;
-          // console.log(this.patient);
+          console.log("messge => "+message);
+          console.log("This is patient => "+ JSON.stringify(this.patient));
         } catch (error) {
           console.log(error);
         }
@@ -132,14 +133,19 @@ export default {
       } else {
         this.msgTele = 'Tele-Medicine';
       }
-    },
-    sendData() {
-      alert('sendData');
+      // send data to webview
       let CefSharp;
       let sc;
       CefSharp.PostMessage({"data_type": sc.script_name})
-      this.$emit('sendData');
+      this.$emit(this.isToggle);
     },
+    // sendData() {
+    //   alert('sendData');
+    //   let CefSharp;
+    //   let sc;
+    //   CefSharp.PostMessage({"data_type": sc.script_name})
+    //   this.$emit('sendData');
+    // },
     getThaiDate(thd) {
       let ymd = new Date(thd);
       let year = ymd.getFullYear();
@@ -182,7 +188,7 @@ header {
   border-bottom: 1px solid #dee2e6 !important;
 }
 
-.myButton {
+.myButton-unused {
   animation-duration: 1750ms ;
   animation-fill-mode: both ;
   animation-iteration-count: infinite ;
