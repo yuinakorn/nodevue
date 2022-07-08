@@ -24,7 +24,7 @@ import SideBar from "@/components/SideBar";
 import NavBar from "@/components/NavBar";
 import IsLoading from "@/components/Loading";
 
-// import axios from "axios";
+import axios from "axios";
 import io from 'socket.io-client';
 
 require('dotenv').config();
@@ -33,6 +33,14 @@ require('dotenv').config();
 
 export default {
   name: 'Home',
+  async created() {
+    const response = axios.get(process.env.API_ONEUSER_LOGIN, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      }
+    });
+    console.log(response)
+  },
   components: {
     Main,
     SideBar,
@@ -51,7 +59,6 @@ export default {
   methods: {
     parentMethod(myParam) {
       this.toggle = myParam;
-      // console.log('this myParam => '+ myParam);
     }
   },
   async mounted() {

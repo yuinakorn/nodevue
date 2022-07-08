@@ -3,9 +3,14 @@ import Home from '../views/Home.vue'
 
 const routes = [
     {
-        path: '/:cid/:hcode',
+        path: '/:cid/:hcode/t/:token',
         name: 'Home',
         component: Home
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: () => import('../views/Login.vue')
     },
     {
         path: '/about',
