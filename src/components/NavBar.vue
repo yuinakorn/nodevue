@@ -74,8 +74,11 @@ export default {
     axios.get(url)
         .then(response => {
           // handle success
-          this.imms = response.data.result.vaccine_certificate[0].vaccination_list;
-          let dose_arr = response.data.result.vaccine_certificate[0].vaccination_list;
+          // this.imms = response.data.result.vaccine_certificate[0].vaccination_list;
+          // console.log(JSON.stringify(response.data));
+          this.imms = response.data;
+          // let dose_arr = response.data.result.vaccine_certificate[0].vaccination_list;
+          let dose_arr = response.data;
           // console.log(dose_arr);
           let maxDose = Math.max.apply(Math, dose_arr.map(function (o) {
             return o.vaccine_dose_no;
