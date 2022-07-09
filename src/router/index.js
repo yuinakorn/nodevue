@@ -2,12 +2,41 @@ import {createRouter, createWebHistory} from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "@/views/Login";
 import PageNotFound from "@/views/PageNotFound";
+import Page401 from "@/views/Page401";
+require('dotenv').config();
+
+const secret = process.env.VUE_APP_SECRET_KEY;
+
+function guardMyRoute(to, from, next) {
+    let jwt = require('jsonwebtoken');
+    let decode = '';
+    const token = to.params.token;
+    let isAuthenticated = false;
+
+    try {
+        decode = jwt.verify(token, secret);
+        console.log("decoded => "+JSON.stringify(decode));
+    } catch (err) {
+        console.log("err => "+err);
+    }
+
+    console.log("params token => " + token);
+
+    isAuthenticated = !!decode; // shot if
+
+    if (isAuthenticated) {
+        next(); // allow to enter route
+    } else {
+        next('/page401'); // go to 401 page
+    }
+}
 
 const routes = [
     {
         path: '/:cid/:hcode/t/:token',
         name: 'Home',
-        component: Home
+        component: Home,
+        beforeEnter: guardMyRoute,
     },
     {
         path: '/login',
@@ -17,10 +46,12 @@ const routes = [
     {
         path: '/about',
         name: 'About',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    },
+    {
+        path: '/page401',
+        name: 'Page401',
+        component: Page401
     },
     {
         path: '/:pathMatch(.*)*',

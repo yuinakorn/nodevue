@@ -4,15 +4,14 @@
       <div class="col-md-12">
         <section class="page_404">
           <div class="four_zero_four_bg">
-            <h1 class="text-center ">404</h1>
+            <h1 class="text-center ">401</h1>
           </div>
 
           <div class="contant_box_404">
             <h3 class="h2">
-              Look like you're lost
+              Unauthorized !
             </h3>
-            <p>the page you are looking for not available!</p>
-            <button class="link_404 btn rounded-pill" onclick="history.back()">Go back</button>
+            <p>Your existing token doesn't authorize.</p>
           </div>
         </section>
 
@@ -23,10 +22,8 @@
 </template>
 
 <script>
-
 export default {
-  name: "PageNotFound",
-
+  name: "Page401"
 }
 </script>
 
@@ -75,5 +72,4 @@ export default {
   margin: -50px auto 0 auto;
   text-align: center;
 }
-
 </style>
