@@ -43,8 +43,7 @@ export default {
 
 .four_zero_four_bg {
 
-  background-image: url('../assets/err_page.gif');
-  height: 400px;
+  height: 150px;
   background-position: center;
   width: 700px;
 
