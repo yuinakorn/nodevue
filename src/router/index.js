@@ -15,7 +15,7 @@ function guardMyRoute(to, from, next) {
 
     try {
         decode = jwt.verify(token, secret);
-        console.log("decoded => "+JSON.stringify(decode));
+        // console.log("decoded => "+JSON.stringify(decode));
     } catch (err) {
         console.log("err => "+err);
     }
@@ -33,7 +33,8 @@ function guardMyRoute(to, from, next) {
 
 const routes = [
     {
-        path: '/:cid/:hcode/t/:token',
+        // path: '/:cid/:hcode/t/:token',
+        path: '/t/:token',
         name: 'Home',
         component: Home,
         beforeEnter: guardMyRoute,

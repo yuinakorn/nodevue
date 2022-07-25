@@ -58,7 +58,7 @@ export default {
 .loader,
 .loader:before,
 .loader:after {
-  background: #0dc5c1;
+  background: #026C6AFF;
   -webkit-animation: load1 1s infinite ease-in-out;
   animation: load1 1s infinite ease-in-out;
   width: 1em;
@@ -66,7 +66,7 @@ export default {
 }
 .loader {
   z-index: 2;
-  color: #0dc5c1;
+  color: #026C6AFF;
   text-indent: -9999em;
   margin: 88px auto;
   position: relative;

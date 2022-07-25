@@ -79,7 +79,7 @@ export default {
 
 .list-group-item.active {
   background-color: var(--main-color) !important;
-  border-color: var(--border-color) !important;
+  border-color: var(--main-color) !important;
 }
 
 .btn-outline-primary {
@@ -110,6 +110,11 @@ export default {
 
 .bg-soft1 {
   background-color: var(--color-1) !important;
+}
+
+.bg-dang1 {
+  background-color: #ffe6e6 !important;
+  color: #e80505 !important;
 }
 
 .my-scroll-side {

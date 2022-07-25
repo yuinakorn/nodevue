@@ -24,23 +24,25 @@ import SideBar from "@/components/SideBar";
 import NavBar from "@/components/NavBar";
 import IsLoading from "@/components/Loading";
 
-import axios from "axios";
+// import axios from "axios";
 import io from 'socket.io-client';
 
 require('dotenv').config();
-
+const jwt = require('jsonwebtoken');
+const secret = process.env.VUE_APP_SECRET_KEY;
 // import https from "https";
 
 export default {
   name: 'Home',
-  async created() {
-    const response = axios.get(process.env.API_ONEUSER_LOGIN, {
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token')
-      }
-    });
-    console.log(response)
-  },
+  // async created() {
+  //   const response = axios.get(process.env.API_ONEUSER_LOGIN, {
+  //     headers: {
+  //       'Authorization': 'Bearer ' + localStorage.getItem('token')
+  //     }
+  //   });
+  //   console.log(response)
+  // },
+
   components: {
     Main,
     SideBar,
@@ -65,10 +67,22 @@ export default {
     this.loading = true;
     const socket = io(process.env.VUE_APP_APIURL);
     await socket.on("connect", () => {
-      let cids = this.$route.params.cid;
+
+      const tokens = this.$route.params.token;
+      let decode = '';
+      try {
+        decode = jwt.verify(tokens, secret);
+        var cids = decode.patientCid;
+
+        // console.log("Home_cid=>" + cids);
+        // console.log("decoded => "+JSON.stringify(decode));
+      } catch (err) {
+        console.log("err => " + err);
+      }
 
       // event get service
       let messages = '{"datatype": "service","data": {"CID":"' + cids + '","viewer_id": "' + socket.id + '","client_id":"","his_data":""}}';
+      console.log(messages);
       socket.emit('viewer', messages);
       socket.on('viewer', (message) => {
         try {

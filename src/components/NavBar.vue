@@ -21,8 +21,10 @@
           <div class="d-block" id="telemed"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}
             <!--            <button class="ms-3 btn btn-outline-primary rounded-pill myButton" @click="childMethod">-->
             <button :class="addBtnClass()" @click="childMethod">
+              <font-awesome-icon icon="fa-solid fa-camera" />
               {{ msgTele }}
             </button>
+
           </div>
           <span v-show="isToggle"></span>
           <div class="d-block"><span class="fw-bold">ฉีดวัคซีนล่าสุดเมื่อ: </span><span>{{
@@ -37,8 +39,10 @@
       <div class="col-auto">
         <div class="my-box col overflow-auto pt-1 px-2 pb-1 my-scroll-side">
           <div class="drug_arg">
-            <span class="fw-bold">แพ้ยา: </span>
-            <!--            <span style="font-size: 0.9rem!important;"> (หากมีหลายรายการ โปรดเลื่อนเพื่อดูเพิ่มเติม)</span>-->
+            <span style="font-size: 0.95rem!important;" class="fw-bold">{{ drug_allergy_length }}</span><br>
+            <span style="font-size: 0.8rem" class="ms-1 badge bg-dang1 rounded-pill"
+                  v-for="(drug,index) in drug_allergy"
+                  :key="drug.id">{{ index + 1 }}.{{ drug }}</span>
           </div>
         </div>
       </div>
@@ -49,6 +53,10 @@
 <script>
 import axios from "axios";
 import io from 'socket.io-client';
+
+
+const jwt = require('jsonwebtoken');
+const secret = process.env.VUE_APP_SECRET_KEY;
 
 require('dotenv').config();
 export default {
@@ -63,29 +71,36 @@ export default {
       patient_img: '',
       max_date_vac: '',
       msgTele: 'Tele-Medicine',
+      drug_allergy: [],
+      drug_allergy_length: '',
     }
   },
   props: {
     visits: Array
   },
   mounted() {
-    let cids = this.$route.params.cid;
+    const tokens = this.$route.params.token;
+    let decode = '';
+    try {
+      decode = jwt.verify(tokens, secret);
+    } catch (err) {
+      console.log(err);
+    }
+    let hcode = decode.patientHosCode;
+    let cids = decode.patientCid;
+
     let url = process.env.VUE_APP_VACCINEURL + "/?c=" + cids;
+    // console.log("navbar_url=>" + url);
+
     axios.get(url)
         .then(response => {
-          // handle success
-          // this.imms = response.data.result.vaccine_certificate[0].vaccination_list;
-          // console.log(JSON.stringify(response.data));
           this.imms = response.data;
-          // let dose_arr = response.data.result.vaccine_certificate[0].vaccination_list;
           let dose_arr = response.data;
-          // console.log(dose_arr);
           let maxDose = Math.max.apply(Math, dose_arr.map(function (o) {
             return o.vaccine_dose_no;
           }));
           // console.log(maxDose);
           let vacdate = dose_arr.find(x => x.vaccine_dose_no === maxDose).vaccine_date;
-          // console.log(vacdate);
           this.max_date_vac = vacdate;
           // console.log(this.visits);
         })
@@ -93,15 +108,30 @@ export default {
           // handle error
           console.log(error);
         })
-        .then(function () {
-          // always executed
+    // .then(function () {
+    //   // always executed
+    // });
+
+    axios.get(process.env.VUE_APP_DRUGALLERGY_URL + "/" + cids + "/t/" + tokens)
+        .then(response => {
+          if (response.status === 200) {
+            this.drug_allergy = response.data.drug_allergy;
+            console.log("drug_allergy => " + this.drug_allergy);
+            this.drug_allergy_length = "มีประวัติแพ้ยา " + this.drug_allergy.length + " รายการ";
+            this.showAlert(this.drug_allergy_length, this.drug_allergy);
+          } else {
+            this.drug_allergy = '';
+          }
+        }).catch(function (error) {
+          console.log(error);
         });
 
     const sockets = io(process.env.VUE_APP_APIURL);
     sockets.on("connect", () => {
-      let hcode = this.$route.params.hcode;
+
       // event get patient
       let message = '{"datatype": "patient","cid":"' + cids + '","hcode":"' + hcode + '"}';
+      console.log("message=>" + message);
       sockets.emit('patient', message);
       sockets.on('patient', (message) => {
         try {
@@ -119,6 +149,20 @@ export default {
     'sendData'
   ],
   methods: {
+    showAlert(drug_length, drug_allergy) {
+      // eslint-disable-next-line no-unused-vars
+      var items = [];
+      drug_allergy.forEach(function (item) {
+        items += item + ',' + '\n';
+      });
+      this.$swal.fire({
+            "title": drug_length,
+            "text": items,
+            "icon": 'warning',
+            "confirmButtonColor": '#026C6AFF',
+          }
+      );
+    },
     addBtnClass() {
       if (this.isToggle === true) {
         return "ms-3 px-4 btn btn-outline-danger rounded-pill";
@@ -183,7 +227,7 @@ header {
 }
 
 .drug_arg {
-  font-size: 1.2rem;
+  /*font-size: 1.2rem;*/
   color: red;
 
 }

@@ -132,7 +132,7 @@
   <!-- Bootstrap JS -->
   <div v-if="toggles" class="col-md-3 col-lg-3">
     <iframe allow="camera; microphone; fullscreen; display-capture; autoplay"
-            :src="getJitsiUrl(visits[0].cid)"
+            :src="getJitsiUrl(visits[0].cidx)"
             style="height: 100%; width: 100%; border: 0;"></iframe>
   </div>
 </template>
@@ -156,7 +156,7 @@ export default {
   },
 
   methods: {
-    getJitsiUrl(cid) {
+     getJitsiUrl(cid) {
       return `https://jitsi.chiangmaihealth.go.th/${cid}`;
     },
     showClass(myParam){
