@@ -82,7 +82,7 @@ export default {
 
       // event get service
       let messages = '{"datatype": "service","data": {"CID":"' + cids + '","viewer_id": "' + socket.id + '","client_id":"","his_data":""}}';
-      console.log(messages);
+      // console.log(messages);
       socket.emit('viewer', messages);
       socket.on('viewer', (message) => {
         try {

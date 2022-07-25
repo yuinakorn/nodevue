@@ -20,7 +20,7 @@ function guardMyRoute(to, from, next) {
         console.log("err => "+err);
     }
 
-    console.log("params token => " + token);
+    // console.log("params token => " + token);
 
     isAuthenticated = !!decode; // shot if
 

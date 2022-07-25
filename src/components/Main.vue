@@ -161,9 +161,9 @@ export default {
     },
     showClass(myParam){
       if(myParam === true) {
-        return 'col-md-6 my-scroll-box'
+        return 'col-md-6 col-lg-6 my-scroll-box'
       } else {
-        return 'col-md-9 my-scroll-box'
+        return 'col-md-9 col-lg-9 my-scroll-box'
       }
     },
 

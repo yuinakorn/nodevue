@@ -99,7 +99,6 @@ export default {
           let maxDose = Math.max.apply(Math, dose_arr.map(function (o) {
             return o.vaccine_dose_no;
           }));
-          // console.log(maxDose);
           let vacdate = dose_arr.find(x => x.vaccine_dose_no === maxDose).vaccine_date;
           this.max_date_vac = vacdate;
           // console.log(this.visits);
@@ -116,11 +115,12 @@ export default {
         .then(response => {
           if (response.status === 200) {
             this.drug_allergy = response.data.drug_allergy;
-            console.log("drug_allergy => " + this.drug_allergy);
+            // console.log("drug_allergy => " + this.drug_allergy);
             this.drug_allergy_length = "มีประวัติแพ้ยา " + this.drug_allergy.length + " รายการ";
             this.showAlert(this.drug_allergy_length, this.drug_allergy);
           } else {
-            this.drug_allergy = '';
+            this.drug_allergy = null;
+            // console.log("drug_allergy => " + this.drug_allergy);
           }
         }).catch(function (error) {
           console.log(error);
@@ -131,7 +131,7 @@ export default {
 
       // event get patient
       let message = '{"datatype": "patient","cid":"' + cids + '","hcode":"' + hcode + '"}';
-      console.log("message=>" + message);
+      // console.log("message=>" + message);
       sockets.emit('patient', message);
       sockets.on('patient', (message) => {
         try {
