@@ -21,7 +21,7 @@
           <div class="d-block" id="telemed"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}
             <!--            <button class="ms-3 btn btn-outline-primary rounded-pill myButton" @click="childMethod">-->
             <button :class="addBtnClass()" @click="childMethod">
-              <font-awesome-icon icon="fa-solid fa-camera" />
+              <font-awesome-icon icon="fa-solid fa-camera"/>
               {{ msgTele }}
             </button>
 
@@ -53,7 +53,6 @@
 <script>
 import axios from "axios";
 import io from 'socket.io-client';
-
 
 const jwt = require('jsonwebtoken');
 const secret = process.env.VUE_APP_SECRET_KEY;
@@ -113,7 +112,25 @@ export default {
 
     axios.get(process.env.VUE_APP_DRUGALLERGY_URL + "/" + cids + "/t/" + tokens)
         .then(response => {
-          if (response.status === 200) {
+          if (response.status === 500) {
+            // for (let i = 0; i <= 2; i++) {
+
+              axios.get(process.env.VUE_APP_DRUGALLERGY_URL + "/" + cids + "/t/" + tokens)
+                  .then(response => {
+                    if (response.status === 200) {
+                      this.drug_allergy = response.data.drug_allergy;
+                      this.drug_allergy_length = "มีประวัติแพ้ยา " + this.drug_allergy.length + " รายการ";
+                      this.showAlert(this.drug_allergy_length, this.drug_allergy);
+                    } else {
+                      this.drug_allergy = null;
+                    }
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+
+            // }
+          } else if (response.status === 200) {
             this.drug_allergy = response.data.drug_allergy;
             // console.log("drug_allergy => " + this.drug_allergy);
             this.drug_allergy_length = "มีประวัติแพ้ยา " + this.drug_allergy.length + " รายการ";
@@ -123,8 +140,8 @@ export default {
             // console.log("drug_allergy => " + this.drug_allergy);
           }
         }).catch(function (error) {
-          console.log(error);
-        });
+      console.log(error);
+    });
 
     const sockets = io(process.env.VUE_APP_APIURL);
     sockets.on("connect", () => {
