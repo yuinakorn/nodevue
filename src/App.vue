@@ -118,7 +118,7 @@ export default {
 }
 
 .my-scroll-side {
-  height: 82vh;
+  /*height: 82vh;*/
   overflow-y: scroll;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   /*scrollbar-width: none; !* for Firefox *!*/
