@@ -112,36 +112,35 @@ export default {
 
     axios.get(process.env.VUE_APP_DRUGALLERGY_URL + "/" + cids + "/t/" + tokens)
         .then(response => {
-          if (response.status === 500) {
-            // for (let i = 0; i <= 2; i++) {
-
-              axios.get(process.env.VUE_APP_DRUGALLERGY_URL + "/" + cids + "/t/" + tokens)
-                  .then(response => {
-                    if (response.status === 200) {
-                      this.drug_allergy = response.data.drug_allergy;
-                      this.drug_allergy_length = "มีประวัติแพ้ยา " + this.drug_allergy.length + " รายการ";
-                      this.showAlert(this.drug_allergy_length, this.drug_allergy);
-                    } else {
-                      this.drug_allergy = null;
-                    }
-                  })
-                  .catch(function (error) {
-                    console.log(error);
-                  });
-
-            // }
-          } else if (response.status === 200) {
+          // alert(response.status);
+          if (response.status === 200) {
             this.drug_allergy = response.data.drug_allergy;
-            // console.log("drug_allergy => " + this.drug_allergy);
             this.drug_allergy_length = "มีประวัติแพ้ยา " + this.drug_allergy.length + " รายการ";
             this.showAlert(this.drug_allergy_length, this.drug_allergy);
-          } else {
-            this.drug_allergy = null;
-            // console.log("drug_allergy => " + this.drug_allergy);
           }
-        }).catch(function (error) {
-      console.log(error);
-    });
+          else {
+            alert(response.status);
+            this.drug_allergy = null;
+          }
+        }).catch((error) => {
+      console.log("error => " + error);
+      console.log("error code => "+error.response.status);
+      if (error.response.status === 500) {
+          axios.get(process.env.VUE_APP_DRUGALLERGY_URL + "/" + cids + "/t/" + tokens)
+              .then(response => {
+                if (response.status === 200) {
+                  this.drug_allergy = response.data.drug_allergy;
+                  this.drug_allergy_length = "มีประวัติแพ้ยา " + this.drug_allergy.length + " รายการ";
+                  this.showAlert(this.drug_allergy_length, this.drug_allergy);
+                } else {
+                  alert(response.status);
+                  this.drug_allergy = null;
+                }
+              }).catch(function (error) {
+            console.log(error.response.data);
+          });
+      }
+    }); // end axios
 
     const sockets = io(process.env.VUE_APP_APIURL);
     sockets.on("connect", () => {
