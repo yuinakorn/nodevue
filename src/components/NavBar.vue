@@ -7,7 +7,7 @@
       <div class="col">
         <div class="row">
           <div class="col-3 text-center">
-            <img class="ms-2" alt="" :src="'data:image/png;base64,'+patient_img" height="95" v-if="patient_img != null && patient_img != ''">
+            <img class="ms-2 img-width" alt="" :src="'data:image/png;base64,'+patient_img" height="95" v-if="patient_img != null && patient_img != ''">
             <img alt="" src="../assets/person_avatar.jpg" height="95" v-else>
           </div>
           <div class="col">
@@ -290,7 +290,9 @@ export default {
 header {
   background: white;
 }
-
+.img-width {
+  max-width: 105px;
+}
 /*.red-tab {*/
 /*  background: #FEF0F0;*/
 /*  color: red;*/

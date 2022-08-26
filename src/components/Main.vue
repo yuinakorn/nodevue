@@ -133,7 +133,7 @@
   <div v-if="toggles" class="col-md-3 col-lg-3" id="telemed">
     <iframe allow="camera; microphone; fullscreen; display-capture; autoplay"
             :src="getJitsiUrl(visits[0].cidx)"
-            style="height: 100%; width: 100%; border: 0;"></iframe>
+            style="height: 80%; width: 100%; border: 0;"></iframe>
   </div>
 </template>
 <script>
