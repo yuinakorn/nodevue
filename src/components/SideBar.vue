@@ -60,6 +60,9 @@ export default {
 </script>
 
 <style scoped>
+.my-scroll-side {
+  height: 80vh !important;
+}
 
 .list-group {
   top: 5rem;

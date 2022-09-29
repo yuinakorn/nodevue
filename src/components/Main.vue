@@ -1,6 +1,7 @@
 <template>
-<!--  <div class="col-md-6 my-scroll-box" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="180"-->
-  <div :class="showClass(toggles)" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="180"
+  <!--  <div class="col-md-6 my-scroll-box" data-bs-spy="scroll" data-bs-target="#scrollspy-list" data-bs-offset="180"-->
+  <div id="myScrollBox" :class="showClass(toggles)" data-bs-spy="scroll" data-bs-target="#scrollspy-list"
+       data-bs-offset="180"
        tabindex="0">
     <div :id="`vn${visit0.vn}`" v-for="visit0 in visits" :key="visit0.id">
       <!--        <h4 id="intro">Introduction to Bootstrap</h4>-->
@@ -133,11 +134,11 @@
   <div v-if="toggles" class="col-md-3 col-lg-3" id="telemed">
     <iframe allow="camera; microphone; fullscreen; display-capture; autoplay"
             :src="getJitsiUrl(visits[0].cidx)"
-            style="height: 80%; width: 100%; border: 0;"></iframe>
+            style="height: 80vh; width: 100%; border: 0;"></iframe>
   </div>
 </template>
 <script>
-
+import $ from 'jquery'
 // import NavBar from "@/components/NavBar";
 export default {
   // name: 'HomePage',
@@ -155,12 +156,21 @@ export default {
     toggles: Boolean
   },
 
+  updated: function () {
+    this.scrollWin()
+  },
+
   methods: {
-     getJitsiUrl(cid) {
+    scrollWin() {
+      // 1 is pixel, 800 is time
+      $("#myScrollBox").animate({scrollTop: 1}, 800);
+    },
+    
+    getJitsiUrl(cid) {
       return `https://meet.jit.si/${cid}`;
     },
-    showClass(myParam){
-      if(myParam === true) {
+    showClass(myParam) {
+      if (myParam === true) {
         return 'col-md-6 col-lg-6 my-scroll-box'
       } else {
         return 'col-md-9 col-lg-9 my-scroll-box'
@@ -177,7 +187,8 @@ export default {
       } else {
         return 'badge bg-light text-dark rounded-pill';
       }
-    },
+    }
+    ,
     diagClass(result) {
       // console.log(result);
       if (result != 0) {
@@ -185,7 +196,8 @@ export default {
       } else {
         return 'd-none';
       }
-    },
+    }
+    ,
     drugClass(result) {
       // console.log(result);
       if (result != 0) {
@@ -193,7 +205,8 @@ export default {
       } else {
         return 'd-none';
       }
-    },
+    }
+    ,
     labClass(result) {
       // console.log(result);
       if (result != 0) {
@@ -201,7 +214,8 @@ export default {
       } else {
         return 'd-none';
       }
-    },
+    }
+    ,
     procClass(result) {
       // console.log(result);
       if (result != 0) {
@@ -209,7 +223,8 @@ export default {
       } else {
         return 'd-none';
       }
-    },
+    }
+    ,
     getThaiDate(thd) {
       let ymd = new Date(thd);
       let year = ymd.getFullYear();
@@ -223,7 +238,8 @@ export default {
         day: '2-digit',
       });
       return resultd;
-    },
+    }
+    ,
     formatNum0(n) {
       let num0 = parseFloat(n).toFixed(0);
       let fnum = '';
@@ -233,7 +249,8 @@ export default {
         fnum = num0;
       }
       return fnum;
-    },
+    }
+    ,
     formatNum1(n) {
       let num1 = parseFloat(n).toFixed(1);
       let fnum = '';
@@ -245,7 +262,7 @@ export default {
       return fnum;
     }
   },
-  // components: {ContentLoader}
+// components: {ContentLoader}
 
 }
 </script>
@@ -272,7 +289,7 @@ a {
 }
 
 .my-scroll-box {
-  height: 83vh;
+  height: 80vh;
   overflow-y: scroll;
 }
 

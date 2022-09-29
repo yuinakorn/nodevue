@@ -24,6 +24,7 @@
     "jquery": "^3.6.0",
     "jsonwebtoken": "^8.5.1",
     "qs": "^6.11.0",
+    "request": "^2.88.2",
     "socket.io": "^4.4.1",
     "socket.io-client": "^4.4.1",
     "tar": "^6.1.11",

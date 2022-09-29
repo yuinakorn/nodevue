@@ -26,6 +26,7 @@ import IsLoading from "@/components/Loading";
 
 // import axios from "axios";
 import io from 'socket.io-client';
+import $ from "jquery";
 
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
