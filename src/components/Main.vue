@@ -157,7 +157,7 @@ export default {
 
   methods: {
      getJitsiUrl(cid) {
-      return `https://jitsi.chiangmaihealth.go.th/${cid}`;
+      return `https://meet.jit.si/${cid}`;
     },
     showClass(myParam){
       if(myParam === true) {
