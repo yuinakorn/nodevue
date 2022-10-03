@@ -4,14 +4,14 @@
       <div class="col-md-12">
         <section class="page_404">
           <div class="four_zero_four_bg">
-            <h1 class="text-center ">404</h1>
+            <h1 class="text-center ">Error 404</h1>
           </div>
 
           <div class="contant_box_404">
             <h3 class="h2">
-              Look like you're lost
+              Page Not Found !
             </h3>
-            <p>the page you are looking for not available!</p>
+            <p>URL ไม่ถูกต้อง โปรดตรวจสอบ</p>
             <button class="link_404 btn rounded-pill" onclick="history.back()">Go back</button>
           </div>
         </section>

@@ -4,14 +4,14 @@
       <div class="col-md-12">
         <section class="page_404">
           <div class="four_zero_four_bg">
-            <h1 class="text-center ">401</h1>
+            <h1 class="text-center ">Error 401</h1>
           </div>
 
           <div class="contant_box_404">
             <h3 class="h2">
-              Unauthorized !
+              การยืนยันตัวตนไม่ถูกต้อง !
             </h3>
-            <p>Your existing token doesn't authorize.</p>
+            <p>หรือ Token หมดเวลา.</p>
           </div>
         </section>
 

@@ -18,6 +18,7 @@
 </template>
 
 <script>
+
 export default {
   name: "SideBar",
   data() {
@@ -28,7 +29,9 @@ export default {
   props: {
     visits: Array
   },
+
   methods: {
+
     getClass(result) {
       if (result === 'OPD') {
         return 'badge bg-primary-my rounded-pill';

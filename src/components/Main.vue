@@ -163,7 +163,9 @@ export default {
   methods: {
     scrollWin() {
       // 1 is pixel, 800 is time
-      $("#myScrollBox").animate({scrollTop: 1}, 800);
+      $("#myScrollBox").animate({scrollTop: 15}, 800).then(
+          $("#myScrollBox").animate({scrollTop: 0}, 400)
+      );
     },
     
     getJitsiUrl(cid) {
