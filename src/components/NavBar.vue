@@ -165,8 +165,7 @@ export default {
           let maxDose = Math.max.apply(Math, dose_arr.map(function (o) {
             return o.vaccine_dose_no;
           }));
-          let vacdate = dose_arr.find(x => x.vaccine_dose_no === maxDose).vaccine_date;
-          this.max_date_vac = vacdate;
+          this.max_date_vac = dose_arr.find(x => x.vaccine_dose_no === maxDose).vaccine_date;
           // console.log(this.visits);
         })
         .catch(function (error) {
