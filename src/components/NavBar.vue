@@ -1,13 +1,14 @@
 <template>
   <header>
-<!--    <div class="px-1 red-tab">-->
-<!--      <span>ท่านกำลัง login ชื่อผู้ใช้ {{ username }}</span>-->
-<!--    </div>-->
+    <!--    <div class="px-1 red-tab">-->
+    <!--      <span>ท่านกำลัง login ชื่อผู้ใช้ {{ username }}</span>-->
+    <!--    </div>-->
     <div class="row g-4 py-2 row-cols-1 row-cols-lg-3">
       <div class="col">
         <div class="row">
           <div class="col-3 text-center">
-            <img class="ms-2 img-width" alt="" :src="'data:image/png;base64,'+patient_img" height="95" v-if="patient_img != null && patient_img != ''">
+            <img class="ms-2 img-width" alt="" :src="'data:image/png;base64,'+patient_img" height="95"
+                 v-if="patient_img != null && patient_img != ''">
             <img alt="" src="../assets/person_avatar.jpg" height="95" v-else>
           </div>
           <div class="col">
@@ -50,53 +51,53 @@
       </div>
     </div>
 
-<!--    <div class="pt-2 container-fluid d-flex justify-content-between">-->
-<!--      <div class="d-flex col-lg-3 col-md-3 col-sm-12">-->
-<!--        <a class="align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">-->
-<!--          <img :src="'data:image/png;base64,'+patient_img" height="95" v-if="patient_img != null && patient_img != ''">-->
-<!--          <img src="../assets/person_avatar.jpg" height="95" v-else>-->
-<!--        </a>-->
+    <!--    <div class="pt-2 container-fluid d-flex justify-content-between">-->
+    <!--      <div class="d-flex col-lg-3 col-md-3 col-sm-12">-->
+    <!--        <a class="align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">-->
+    <!--          <img :src="'data:image/png;base64,'+patient_img" height="95" v-if="patient_img != null && patient_img != ''">-->
+    <!--          <img src="../assets/person_avatar.jpg" height="95" v-else>-->
+    <!--        </a>-->
 
-<!--        <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-3 mb-md-0 d-block justify-content-start">-->
-<!--          <div class="d-block"><span class="fw-bold">ชื่อ-สกุล:</span> {{ patient.pname }}{{ patient.fname }}-->
-<!--            {{ patient.lname }}-->
-<!--          </div>-->
-<!--          <div class="d-block"><span class="fw-bold">เพศ:</span> {{ patient.sex }}</div>-->
-<!--          <div class="d-block"><span class="fw-bold">อายุ:</span> <span class="me-1">{{ patient.age }}</span> ปี</div>-->
-<!--          <div class="d-block"><span class="fw-bold">วันเกิด:</span> {{ getThaiDate(patient.birthday) }}</div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="col-lg-6 col-md-6 col-sm-12">-->
-<!--        <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-5 mb-md-0 d-block justify-content-start">-->
-<!--          <div class="d-block" id="telemed"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}-->
-<!--            &lt;!&ndash;            <button class="ms-3 btn btn-outline-primary rounded-pill myButton" @click="childMethod">&ndash;&gt;-->
-<!--            <button :class="addBtnClass()" @click="childMethod">-->
-<!--              <font-awesome-icon icon="fa-solid fa-camera"/>-->
-<!--              {{ msgTele }}-->
-<!--            </button>-->
+    <!--        <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-3 mb-md-0 d-block justify-content-start">-->
+    <!--          <div class="d-block"><span class="fw-bold">ชื่อ-สกุล:</span> {{ patient.pname }}{{ patient.fname }}-->
+    <!--            {{ patient.lname }}-->
+    <!--          </div>-->
+    <!--          <div class="d-block"><span class="fw-bold">เพศ:</span> {{ patient.sex }}</div>-->
+    <!--          <div class="d-block"><span class="fw-bold">อายุ:</span> <span class="me-1">{{ patient.age }}</span> ปี</div>-->
+    <!--          <div class="d-block"><span class="fw-bold">วันเกิด:</span> {{ getThaiDate(patient.birthday) }}</div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div class="col-lg-6 col-md-6 col-sm-12">-->
+    <!--        <div class="nav col-sm-auto col-md-auto col-lg-auto me-lg-auto mb-2 ms-5 mb-md-0 d-block justify-content-start">-->
+    <!--          <div class="d-block" id="telemed"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}-->
+    <!--            &lt;!&ndash;            <button class="ms-3 btn btn-outline-primary rounded-pill myButton" @click="childMethod">&ndash;&gt;-->
+    <!--            <button :class="addBtnClass()" @click="childMethod">-->
+    <!--              <font-awesome-icon icon="fa-solid fa-camera"/>-->
+    <!--              {{ msgTele }}-->
+    <!--            </button>-->
 
-<!--          </div>-->
-<!--          <span v-show="isToggle"></span>-->
-<!--          <div class="d-block"><span class="fw-bold">ฉีดวัคซีนล่าสุดเมื่อ: </span><span>{{-->
-<!--              getThaiDate(max_date_vac)-->
-<!--            }}</span></div>-->
-<!--          <div class="d-block"><span class="fw-bold">วัคซีนโควิด:</span>-->
-<!--            <span class="ms-1 badge bg-soft1 text-white rounded-pill" v-for="imm in imms"-->
-<!--                  :key="imm.id">{{ imm.vaccine_dose_no }}. {{ imm.vaccine_manufacturer_name }}</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="col-lg-6 col-md-6 col-sm-12">-->
-<!--        <div class="my-box col overflow-auto pt-1 px-2 pb-1 my-scroll-side">-->
-<!--          <div class="drug_arg">-->
-<!--            <span style="font-size: 0.95rem!important;" class="fw-bold">{{ drug_allergy_length }}</span><br>-->
-<!--            <span style="font-size: 0.8rem" class="ms-1 badge bg-dang1 rounded-pill"-->
-<!--                  v-for="(drug,index) in drug_allergy"-->
-<!--                  :key="drug.id">{{ index + 1 }}.{{ drug }}</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--          </div>-->
+    <!--          <span v-show="isToggle"></span>-->
+    <!--          <div class="d-block"><span class="fw-bold">ฉีดวัคซีนล่าสุดเมื่อ: </span><span>{{-->
+    <!--              getThaiDate(max_date_vac)-->
+    <!--            }}</span></div>-->
+    <!--          <div class="d-block"><span class="fw-bold">วัคซีนโควิด:</span>-->
+    <!--            <span class="ms-1 badge bg-soft1 text-white rounded-pill" v-for="imm in imms"-->
+    <!--                  :key="imm.id">{{ imm.vaccine_dose_no }}. {{ imm.vaccine_manufacturer_name }}</span>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div class="col-lg-6 col-md-6 col-sm-12">-->
+    <!--        <div class="my-box col overflow-auto pt-1 px-2 pb-1 my-scroll-side">-->
+    <!--          <div class="drug_arg">-->
+    <!--            <span style="font-size: 0.95rem!important;" class="fw-bold">{{ drug_allergy_length }}</span><br>-->
+    <!--            <span style="font-size: 0.8rem" class="ms-1 badge bg-dang1 rounded-pill"-->
+    <!--                  v-for="(drug,index) in drug_allergy"-->
+    <!--                  :key="drug.id">{{ index + 1 }}.{{ drug }}</span>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
   </header>
 </template>
 
@@ -125,24 +126,35 @@ export default {
       drug_allergy_length: '',
       drug_allergy_none: '',
       username: '',
+      cid: '',
+      doctor_hoscode: '',
+      patientHosCode: '',
+      patientCid: '',
+      tele_token: '',
     }
   },
   props: {
-    visits: Array
+    visits: Array,
+    hosCode: String
   },
   mounted() {
     const tokens = this.$route.params.token;
+    this.tele_token = tokens;
     let decode = '';
     try {
       decode = jwt.verify(tokens, secret);
     } catch (err) {
       console.log(err);
     }
-    let hcode = decode.patientHosCode;
-    let cids = decode.patientCid;
+    this.patientHosCode = decode.patientHosCode; // รหัสสถานบริการ ของผู้ป่วย
+    this.patientCid = decode.patientCid;
     this.username = decode.username;
+    this.cid = decode.cid; // รหัสประชาชน ของผู้ใช้งาน
+    this.doctor_hoscode = decode.hosCode; // รหัสสถานบริการ เจ้าหน้าที่
+    // this.patientHosCode = patientHosCode;
+    // this.patientCid = patientCid;
 
-    let url = process.env.VUE_APP_VACCINEURL + "/?c=" + cids;
+    let url = process.env.VUE_APP_VACCINEURL + "/?c=" + this.patientCid;
     // console.log("navbar_url=>" + url);
 
     axios.get(url)
@@ -164,7 +176,7 @@ export default {
     //   // always executed
     // });
 
-    axios.get(process.env.VUE_APP_DRUGALLERGY_URL + "/" + cids + "/t/" + tokens)
+    axios.get(process.env.VUE_APP_DRUGALLERGY_URL + "/" + this.patientCid + "/t/" + tokens)
         .then(response => {
           // alert(response.status);
           if (response.status === 200) {
@@ -179,7 +191,7 @@ export default {
       console.log("error => " + error);
       console.log("error code => " + error.response.status);
       if (error.response.status === 500) {
-        axios.get(process.env.VUE_APP_DRUGALLERGY_URL + "/" + cids + "/t/" + tokens)
+        axios.get(process.env.VUE_APP_DRUGALLERGY_URL + "/" + this.patientCid + "/t/" + tokens)
             .then(response => {
               if (response.status === 200) {
                 this.drug_allergy = response.data.drug_allergy;
@@ -201,7 +213,7 @@ export default {
     sockets.on("connect", () => {
 
       // event get patient
-      let message = '{"datatype": "patient","cid":"' + cids + '","hcode":"' + hcode + '"}';
+      let message = '{"datatype": "patient","cid":"' + this.patientCid + '","hcode":"' + this.patientHosCode + '"}';
       // console.log("message=>" + message);
       sockets.emit('patient', message);
       sockets.on('patient', (message) => {
@@ -236,6 +248,25 @@ export default {
     },
     addBtnClass() {
       if (this.isToggle === true) {
+        // console.log(this.doctor_hoscode);
+        // console.log(this.cid);
+        // console.log(this.username);
+        // console.log(this.patientHosCode);
+        // console.log(this.patientCid);
+
+        let url = process.env.VUE_APP_TELELOG_URL + '/telelog/?jwt_str=' + this.tele_token
+        fetch(url, {
+          method: 'POST',
+        })
+            .then(response => {
+              console.log(response);
+            })
+            .catch(error => {
+              console.log(error);
+            });
+
+
+
         return "ms-3 px-4 btn btn-outline-danger rounded-pill";
       } else {
         return "ms-3 btn btn-outline-primary rounded-pill myButton";
@@ -256,7 +287,7 @@ export default {
       CefSharp.PostMessage({"data_type": "Telamed", "value": true})
       this.$emit(this.isToggle);
 
-      $("html, body").animate({ scrollDown: 0 }, "slow");
+      $("html, body").animate({scrollDown: 0}, "slow");
       // return false;
 
       // {"data_type":"Telamed","value",true}
@@ -290,9 +321,11 @@ export default {
 header {
   background: white;
 }
+
 .img-width {
   max-width: 105px;
 }
+
 /*.red-tab {*/
 /*  background: #FEF0F0;*/
 /*  color: red;*/

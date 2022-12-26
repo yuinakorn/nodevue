@@ -56,7 +56,7 @@ export default {
       visits: null,
       loading: false,
       overlay: false,
-      toggle: false
+      toggle: false,
     }
   },
   methods: {
@@ -73,7 +73,7 @@ export default {
       let decode = '';
       try {
         decode = jwt.verify(tokens, secret);
-        var cids = decode.patientCid;
+        var patientCid = decode.patientCid;
 
         // console.log("Home_cid=>" + cids);
         // console.log("decoded => "+JSON.stringify(decode));
@@ -82,7 +82,7 @@ export default {
       }
 
       // event get service
-      let messages = '{"datatype": "service","data": {"CID":"' + cids + '","viewer_id": "' + socket.id + '","client_id":"","his_data":""}}';
+      let messages = '{"datatype": "service","data": {"CID":"' + patientCid + '","viewer_id": "' + socket.id + '","client_id":"","his_data":""}}';
       // console.log(messages);
       socket.emit('viewer', messages);
       socket.on('viewer', (message) => {
