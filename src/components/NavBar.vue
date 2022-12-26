@@ -131,6 +131,7 @@ export default {
       patientHosCode: '',
       patientCid: '',
       tele_token: '',
+      ip: '',
     }
   },
   props: {
@@ -248,13 +249,19 @@ export default {
     },
     addBtnClass() {
       if (this.isToggle === true) {
-        // console.log(this.doctor_hoscode);
-        // console.log(this.cid);
-        // console.log(this.username);
-        // console.log(this.patientHosCode);
-        // console.log(this.patientCid);
+        // get ip address from web browser
+        axios.get('https://api.ipify.org?format=json')
+            .then(response => {
+              this.ip = response.data.ip;
+              console.log("ip=>" + this.ip);
+            })
+            .catch(function (error) {
+              // handle error
+              console.log(error);
+            })
 
-        let url = process.env.VUE_APP_TELELOG_URL + '/telelog/?jwt_str=' + this.tele_token
+
+        let url = process.env.VUE_APP_TELELOG_URL + '/telelog/?jwt_str=' + this.tele_token + '&ip=' + this.ip
         fetch(url, {
           method: 'POST',
         })
@@ -264,7 +271,6 @@ export default {
             .catch(error => {
               console.log(error);
             });
-
 
 
         return "ms-3 px-4 btn btn-outline-danger rounded-pill";
