@@ -250,27 +250,45 @@ export default {
     addBtnClass() {
       if (this.isToggle === true) {
         // get ip address from web browser
-        axios.get('https://api.ipify.org?format=json')
-            .then(response => {
-              this.ip = response.data.ip;
-              console.log("ip=>" + this.ip);
-            })
-            .catch(function (error) {
-              // handle error
-              console.log(error);
-            })
+        // axios.get('https://api.ipify.org?format=json')
+        //     .then(response => {
+        //       this.ip = response.data.ip;
+        //       console.log("ip=>" + this.ip);
+        //     })
+        //     .catch(function (error) {
+        //       // handle error
+        //       console.log(error);
+        //     })
+
+          let url_ip = "https://api.ipify.org?format=json";
+          fetch(url_ip)
+              .then(response => response.json())
+              .then(data => {
+                this.ip = data.ip;
+                console.log("ip=>" + this.ip);
+                  let url = process.env.VUE_APP_TELELOG_URL + '/telelog/?jwt_str=' + this.tele_token + '&ip=' + this.ip
+                  fetch(url,{
+                    method: 'POST',
+                  }).then(response => {
+                    console.log(response);
+                  }).catch(error => {
+                    console.log(error);
+                  });
+              })
+              .catch(error => console.log(error));
 
 
-        let url = process.env.VUE_APP_TELELOG_URL + '/telelog/?jwt_str=' + this.tele_token + '&ip=' + this.ip
-        fetch(url, {
-          method: 'POST',
-        })
-            .then(response => {
-              console.log(response);
-            })
-            .catch(error => {
-              console.log(error);
-            });
+          // let url = process.env.VUE_APP_TELELOG_URL + '/telelog/?jwt_str=' + this.tele_token + '&ip=' + this.ip
+          // fetch(url, {
+          //   method: 'POST',
+          // })
+          //     .then(response => {
+          //       console.log(response);
+          //     })
+          //     .catch(error => {
+          //       console.log(error);
+          //     });
+
 
 
         return "ms-3 px-4 btn btn-outline-danger rounded-pill";
