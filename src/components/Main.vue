@@ -68,7 +68,7 @@
             </thead>
             <tbody>
             <tr v-for="drug in visit0.data.drug" :key="drug.id">
-              <td>{{ drug.drugname }}</td>
+              <td>{{ drug.drugname }} ({{drug.strength}})</td>
               <td>{{ drug.drugusage }}</td>
               <td>{{ drug.qty }}</td>
             </tr>
