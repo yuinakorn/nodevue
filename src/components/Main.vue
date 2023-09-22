@@ -171,7 +171,9 @@ export default {
     },
     
     getJitsiUrl(cid) {
-      return `https://meet.jit.si/${cid}`;
+      let outputString = cid.substring(0, 10);
+      let strUrl = outputString+"xyz";
+      return `https://meet.jit.si/${strUrl}`;
     },
     showClass(myParam) {
       if (myParam === true) {
