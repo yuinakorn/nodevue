@@ -132,8 +132,11 @@
   </div>
   <!-- Bootstrap JS -->
   <div v-if="toggles" class="col-md-3 col-lg-3" id="telemed">
+<!--    <iframe allow="camera; microphone; fullscreen; display-capture; autoplay"-->
+<!--            :src="getJitsiUrl(visits[0].cidx)"-->
+<!--            style="height: 80vh; width: 100%; border: 0;"></iframe>-->
     <iframe allow="camera; microphone; fullscreen; display-capture; autoplay"
-            :src="getJitsiUrl(visits[0].cidx)"
+            :src="getJitsiUrl(visits[0].cid)"
             style="height: 80vh; width: 100%; border: 0;"></iframe>
   </div>
 </template>
