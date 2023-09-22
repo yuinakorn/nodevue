@@ -171,9 +171,9 @@ export default {
     },
     
     getJitsiUrl(cid) {
-      let strUrl = cid+"Telemed";
-      console.log("cid ---> " + strUrl)
-      return `https://meet.jit.si/${strUrl}`;
+      const modifiedString = cid.substring(0, cid.length - 3);
+      console.log(modifiedString);
+      return `https://meet.jit.si/${modifiedString}`;
     },
     showClass(myParam) {
       if (myParam === true) {
