@@ -30,13 +30,13 @@
           </button>
         </div>
         <span v-show="isToggle"></span>
-        <div class="d-block"><span class="fw-bold">ฉีดวัคซีนล่าสุดเมื่อ: </span><span>{{
-            getThaiDate(max_date_vac)
-          }}</span></div>
-        <div class="d-block"><span class="fw-bold">วัคซีนโควิด:</span>
-          <span class="ms-1 badge bg-soft1 text-white rounded-pill" v-for="imm in imms"
-                :key="imm.id">{{ imm.vaccine_dose_no }}. {{ imm.vaccine_manufacturer_name }}</span>
-        </div>
+<!--        <div class="d-block"><span class="fw-bold">ฉีดวัคซีนล่าสุดเมื่อ: </span><span>{{-->
+<!--            getThaiDate(max_date_vac)-->
+<!--          }}</span></div>-->
+<!--        <div class="d-block"><span class="fw-bold">วัคซีนโควิด:</span>-->
+<!--          <span class="ms-1 badge bg-soft1 text-white rounded-pill" v-for="imm in imms"-->
+<!--                :key="imm.id">{{ imm.vaccine_dose_no }}. {{ imm.vaccine_manufacturer_name }}</span>-->
+<!--        </div>-->
       </div>
       <div class="col-12 col-sm-12 ps-4">
         <div class="my-box my-scroll-side col-12">
