@@ -24,12 +24,15 @@
       </div>
       <div class="col ps-4">
         <div class="d-block" id="telemed"><span class="fw-bold">เลขบัตรประชาชน:</span> {{ patient.cid }}
+
+        </div>
+        <span v-show="isToggle"></span>
+        <div class="d-block">
           <button :class="addBtnClass()" @click="childMethod">
             <font-awesome-icon icon="fa-solid fa-camera"/>
             {{ msgTele }}
           </button>
         </div>
-        <span v-show="isToggle"></span>
 <!--        <div class="d-block"><span class="fw-bold">ฉีดวัคซีนล่าสุดเมื่อ: </span><span>{{-->
 <!--            getThaiDate(max_date_vac)-->
 <!--          }}</span></div>-->
@@ -290,9 +293,11 @@ export default {
 
 
 
-        return "ms-3 px-4 btn btn-outline-danger rounded-pill";
+        return "px-4 btn btn-outline-danger rounded-pill";
+        // return "ms-3 px-4 btn btn-outline-danger rounded-pill";
       } else {
-        return "ms-3 btn btn-outline-primary rounded-pill myButton";
+        return "mt-2 btn btn-outline-primary rounded-pill myButton";
+        // return "ms-3 btn btn-outline-primary rounded-pill myButton";
       }
     },
 
