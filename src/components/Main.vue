@@ -136,7 +136,7 @@
 <!--            :src="getJitsiUrl(visits[0].cidx)"-->
 <!--            style="height: 80vh; width: 100%; border: 0;"></iframe>-->
     <iframe allow="camera; microphone; fullscreen; display-capture; autoplay"
-            :src="getJitsiUrl(visits[0].cid)"
+            :src="getJitsiUrl(visits[0].cidx)"
             style="height: 80vh; width: 100%; border: 0;"></iframe>
   </div>
 </template>
@@ -171,7 +171,7 @@ export default {
     },
     
     getJitsiUrl(cid) {
-      let strUrl = cid;
+      let strUrl = cid+"Telemed";
       console.log("cid ---> " + strUrl)
       return `https://meet.jit.si/${strUrl}`;
     },
