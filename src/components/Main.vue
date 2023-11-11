@@ -352,9 +352,9 @@ export default {
     },
 
     getJitsiUrl(cid) {
-      const modifiedString = cid.substring(0, cid.length - 3);
-      console.log(modifiedString);
-      return `https://jitsi.chiangmaihealth.go.th/${modifiedString}`;
+      const cid10 = cid.slice(0, -3);
+      const cidx = cid10 + 'xxx';
+      return `https://jitsi.chiangmaihealth.go.th/${cidx}`;
     },
     // showClass(myParam) {
     showClass() {
