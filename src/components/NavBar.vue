@@ -208,7 +208,7 @@ export default {
           console.log(error.response.data);
         });
       } else if (error.response.status === 404) {
-        this.drug_allergy_none = "ไม่มีประวัติแพ้ยา";
+        this.drug_allergy_none = "ไม่พบประวัติแพ้ยา: โปรดตรวจสอบกับผู้ป่วยอีกครั้ง";
       }
     }); // end axios
 
@@ -305,7 +305,7 @@ export default {
       this.isToggle = !this.isToggle;
       this.$emit('customEvent', this.isToggle);
       if (this.isToggle === true) {
-        this.msgTele = 'วางสาย';
+        this.msgTele = 'โปรดกดวางสายตรงนี้';
       } else {
         this.msgTele = 'Tele-Medicine';
       }
@@ -364,9 +364,10 @@ header {
   /*height: 6rem;*/
   height: 100%;
   border-radius: 5px;
-  background-color: #ffe6e6;
+  //background-color: #ffe6e6;
   max-width: 100%;
   padding-left: 1rem;
+  border: 1px solid #e6b3b3;
   /*margin-right: 1rem;*/
   /*width: 49rem;*/
 }

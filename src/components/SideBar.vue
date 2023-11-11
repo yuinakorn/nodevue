@@ -4,12 +4,10 @@
       <a :href="`#vn${ visit.vn }`"
          class="list-group-item list-group-item-action d-flex justify-content-between align-items-start"
          v-for="visit in visits" :key="visit.id">
-        <div class="col-4">
-          <div class="fw-bold line-height07 my-fs-s">{{ getThaiDate(visit.dateserv) }}</div>
-          <span class="text-sub-title line-height07">{{ visit.hname }}</span>
-        </div>
-        <div class="text-truncate">
-          <span class="small">{{ visit.symptom }}</span>
+        <div class="col">
+          <div class="fw-bold line-height07 my-fs-s">{{ visit.hname }}</div>
+          <span class="text-sub-title line-height07">{{ getThaiDate(visit.dateserv) }}</span>
+          <div class="text-truncate my-symptom"><span class="small">{{ visit.symptom !== null ? visit.symptom : ' ' }}</span></div>
         </div>
         <span :class="getClass(visit.depart)">{{ visit.depart }}</span>
       </a>
@@ -87,6 +85,10 @@ export default {
 
 .active {
   color: white !important;
+}
+
+.my-symptom {
+  width: 15rem;
 }
 
 </style>

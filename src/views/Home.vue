@@ -88,8 +88,8 @@ export default {
       socket.on('viewer', (message) => {
         try {
           this.visits = JSON.parse(message);
-          // console.warn('This Visits => ' + this.visits);
-          // console.log('This message => ' + message);
+          // console.log('This Visits => ' + this.visits);
+          console.log('This message => ' + message);
           this.loading = false
         } catch (error) {
           console.log(error);
