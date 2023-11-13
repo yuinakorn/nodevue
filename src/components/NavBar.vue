@@ -113,6 +113,7 @@ const jwt = require('jsonwebtoken');
 const secret = process.env.VUE_APP_SECRET_KEY;
 
 require('dotenv').config();
+
 export default {
   name: "NavBar",
   el: '#telemed',
@@ -292,8 +293,7 @@ export default {
           //     });
 
 
-
-        return "px-4 btn btn-outline-danger rounded-pill";
+        return "px-4 btn btn-danger rounded-pill";
         // return "ms-3 px-4 btn btn-outline-danger rounded-pill";
       } else {
         return "mt-2 btn btn-outline-primary rounded-pill myButton";
@@ -302,17 +302,25 @@ export default {
     },
 
     childMethod() {
+      let CefSharp;
       this.isToggle = !this.isToggle;
+      // if (this.isToggle) {
+      //   this.sendData()
+      // }
       this.$emit('customEvent', this.isToggle);
       if (this.isToggle === true) {
+        // send data to webview
+        CefSharp.PostMessage("start_telemed");
         this.msgTele = 'โปรดกดวางสายตรงนี้';
       } else {
+        // send data to webview
+        CefSharp.PostMessage("stop_telemed");
         this.msgTele = 'Tele-Medicine';
       }
       // send data to webview
-      let CefSharp;
+      // let CefSharp;
       // let sc;
-      CefSharp.PostMessage({"data_type": "Telamed", "value": true})
+      // CefSharp.PostMessage({"data_type": "Telamed", "value": true})
       this.$emit(this.isToggle);
 
       $("html, body").animate({scrollDown: 0}, "slow");
@@ -320,13 +328,6 @@ export default {
 
       // {"data_type":"Telamed","value",true}
     },
-    // sendData() {
-    //   alert('sendData');
-    //   let CefSharp;
-    //   let sc;
-    //   CefSharp.PostMessage({"data_type": sc.script_name})
-    //   this.$emit('sendData');
-    // },
     getThaiDate(thd) {
       let ymd = new Date(thd);
       let year = ymd.getFullYear();
