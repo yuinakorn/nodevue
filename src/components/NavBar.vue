@@ -302,7 +302,7 @@ export default {
     },
 
     childMethod() {
-      let CefSharp;
+      // let CefSharp;
       this.isToggle = !this.isToggle;
       // if (this.isToggle) {
       //   this.sendData()
@@ -310,11 +310,11 @@ export default {
       this.$emit('customEvent', this.isToggle);
       if (this.isToggle === true) {
         // send data to webview
-        CefSharp.PostMessage("start_telemed");
-        this.msgTele = 'โปรดกดวางสายตรงนี้';
+        // CefSharp.PostMessage("start_telemed");
+        this.msgTele = 'โปรดกดวางสายที่นี้';
       } else {
         // send data to webview
-        CefSharp.PostMessage("stop_telemed");
+        // CefSharp.PostMessage("stop_telemed");
         this.msgTele = 'Tele-Medicine';
       }
       // send data to webview
